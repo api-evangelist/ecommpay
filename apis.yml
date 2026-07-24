@@ -1,0 +1,140 @@
+aid: ecommpay
+url: https://raw.githubusercontent.com/api-evangelist/ecommpay/refs/heads/main/apis.yml
+name: ECOMMPAY
+kind: company
+description: >-
+  ECOMMPAY is a London-headquartered international payment service provider and
+  direct card acquirer founded in 2012, authorised by the UK Financial Conduct
+  Authority (FRN 607597), PCI DSS Level 1 certified, and holding Visa and
+  Mastercard Principal Membership. It operates its own payment gateway,
+  acquiring, and certified processing platform, serving e-commerce merchants
+  across Europe, the UK, and global markets with card processing, 100+
+  alternative and local payment methods, open banking, payouts, multi-currency
+  settlement, and fraud prevention. Its developer surface is API-native but
+  signature-authenticated rather than token-based: merchants integrate through a
+  hosted Payment Page API, a server-to-server Gate API for direct payment
+  processing, a Data API for reporting and reconciliation, and a Dashboard for
+  operational management, all documented on a public developer portal with
+  callbacks/webhooks and multi-language SDKs. Its home market is the United
+  Kingdom.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Payments
+- United Kingdom
+- Payment Gateway
+- Payment Processing
+- Acquiring
+- Card Payments
+- Alternative Payment Methods
+- Open Banking
+- Payouts
+- Cross-Border
+- Fraud
+created: '2026-07-24'
+modified: '2026-07-24'
+specificationVersion: '0.19'
+apis:
+- aid: ecommpay:ecommpay-payment-page-api
+  name: ECOMMPAY Payment Page API
+  description: >-
+    Hosted, highly customisable payment form for accepting payments across
+    cards, alternative payment methods, and wallets. Merchants open the Payment
+    Page with a signed request (HMAC signature over the request parameters using
+    the project secret key) and receive asynchronous callbacks with the payment
+    result. Includes JavaScript and mobile SDKs.
+  humanURL: https://developers.ecommpay.com/en/en_PP_about.html
+  baseURL: https://paymentpage.ecommpay.com
+  tags:
+  - Payments
+  - Hosted Payment Page
+  - Checkout
+  properties:
+  - type: Documentation
+    url: https://developers.ecommpay.com/en/en_PP_about.html
+  - type: APIReference
+    url: https://developers.ecommpay.com/en/en_PP_API.html
+- aid: ecommpay:ecommpay-gate-api
+  name: ECOMMPAY Gate API
+  description: >-
+    Server-to-server payment API for direct integration, giving merchants full
+    control of the payment flow through their own interface. Supports one-time
+    purchases, refunds, payouts, and credential-on-file transactions. Requests
+    are authenticated with a project ID and an HMAC signature over the request
+    payload; payment results are delivered via asynchronous callbacks. The API
+    reference is rendered on a dedicated Stoplight-based reference host.
+  humanURL: https://developers.ecommpay.com/en/en_Gate_Integration_About.html
+  baseURL: https://api.ecommpay.com/v2
+  tags:
+  - Payments
+  - Payouts
+  - Refunds
+  - Server to Server
+  properties:
+  - type: Documentation
+    url: https://developers.ecommpay.com/en/en_Gate_Integration_About.html
+  - type: APIReference
+    url: https://api-developers.ecommpay.com/api.html
+- aid: ecommpay:ecommpay-data-api
+  name: ECOMMPAY Data API
+  description: >-
+    Reporting and data-retrieval API for programmatic access to payment,
+    operation, and reconciliation data on the ECOMMPAY platform. Requests are
+    accepted over HTTP/1.1+ with TLS 1.2+ at the documented endpoints and are
+    signature-authenticated. The interface specification is published on a
+    dedicated Stoplight-based reference host.
+  humanURL: https://developers.ecommpay.com/en/en_dbl_api_overview.html
+  baseURL: https://data.ecommpay.com/v1
+  tags:
+  - Data
+  - Reporting
+  - Reconciliation
+  properties:
+  - type: Documentation
+    url: https://developers.ecommpay.com/en/en_dbl_api_overview.html
+  - type: APIReference
+    url: https://api-data.ecommpay.com/api.html
+- aid: ecommpay:ecommpay-dashboard
+  name: ECOMMPAY Dashboard
+  description: >-
+    Merchant management interface providing tools for controlling, analysing,
+    and managing payments, projects, and reporting across the ECOMMPAY platform.
+  humanURL: https://developers.ecommpay.com/en/en_dbl_about.html
+  tags:
+  - Dashboard
+  - Management
+  - Reporting
+  properties:
+  - type: Documentation
+    url: https://developers.ecommpay.com/en/en_dbl_about.html
+common:
+- type: Website
+  url: https://ecommpay.com/
+- type: DeveloperPortal
+  url: https://developers.ecommpay.com/
+- type: Documentation
+  url: https://developers.ecommpay.com/landing-en/
+- type: APIReference
+  url: https://api-developers.ecommpay.com/api.html
+- type: GettingStarted
+  url: https://developers.ecommpay.com/en/en_getting_started.html
+- type: GitHubOrganization
+  url: https://github.com/ITECOMMPAY
+- type: StatusPage
+  url: https://status.ecommpay.com/
+- type: Pricing
+  url: https://ecommpay.com/pricing/
+- type: Blog
+  url: https://ecommpay.com/blog/
+- type: Support
+  url: https://ecommpay.com/support/
+- type: SignUp
+  url: https://dashboard.ecommpay.com/
+- type: TermsOfService
+  url: https://ecommpay.com/terms-of-use/
+- type: PrivacyPolicy
+  url: https://ecommpay.com/privacy-policy/
+- type: LinkedIn
+  url: https://www.linkedin.com/company/ecommpay
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

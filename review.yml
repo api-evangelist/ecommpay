@@ -1,0 +1,108 @@
+aid: ecommpay
+name: ECOMMPAY
+review:
+  question: Does ECOMMPAY expose a real public developer portal, and can a downloadable OpenAPI/Swagger specification be harvested for its payment APIs?
+  answer: partial
+  date: '2026-07-24'
+  reviewer: API Evangelist
+findings:
+  summary: |
+    ECOMMPAY is a London-headquartered, FCA-authorised international payment
+    service provider and direct card acquirer (Visa/Mastercard Principal Member,
+    PCI DSS Level 1). Its home market is the United Kingdom. It runs a genuine,
+    API-native developer surface behind a public developer portal at
+    https://developers.ecommpay.com/ (HTTP 200), which documents four distinct
+    products: a hosted Payment Page API, a server-to-server Gate API, a Data API
+    for reporting/reconciliation, and a Dashboard management interface.
+
+    Two dedicated API-reference hosts are served but both are JavaScript
+    single-page applications built on Stoplight Elements that load their
+    OpenAPI content at runtime through a Stoplight platform node API
+    (fetch to /api/v1/projects/{id}/nodes...), not as a static file:
+      - Gate API reference:  https://api-developers.ecommpay.com/api.html (200)
+      - Data API reference:  https://api-data.ecommpay.com/api.html (200)
+    No downloadable OpenAPI/Swagger document could be harvested. Every common
+    static path probed on both reference hosts returned 404
+    (/openapi.json, /openapi.yaml, /swagger.json, /api.json, /api.yaml,
+    /spec.json, /assets/api.json, etc.), and the SPA bundle contains no
+    hardcoded spec URL. Zero specs were saved verbatim.
+
+    Authentication is signature-based rather than token-based: the Payment Page
+    and Gate APIs sign requests with an HMAC signature computed over the request
+    parameters using a per-project secret key plus a project ID; the Data API is
+    likewise signature-authenticated over TLS 1.2+. No OAuth2 / OpenID Connect
+    metadata is served - /.well-known/openid-configuration and
+    /.well-known/oauth-authorization-server returned 404/403/no-response on the
+    api., gate., and data. hosts. Callbacks/webhooks are documented for both the
+    Payment Page and Gate APIs (asynchronous payment-result notifications). No
+    public Postman collection, GraphQL surface, gRPC/.proto, or AsyncAPI document
+    was found. Multi-language SDKs are published on GitHub (org ITECOMMPAY, also
+    referenced as ecommpay) - Payment Page SDKs for PHP, JS, Python, Java, Go,
+    iOS, Android, .NET, plus WooCommerce/Magento/PrestaShop/commercetools plugins
+    - but these are request-signing/integration libraries, not OpenAPI sources.
+  transports:
+  - protocol: REST
+    scheme: https
+    baseURL: https://paymentpage.ecommpay.com
+    documented: true
+    note: Hosted Payment Page API; opened via HMAC-signed request, results via callback.
+  - protocol: REST
+    scheme: https
+    baseURL: https://api.ecommpay.com/v2
+    documented: true
+    note: Gate API server-to-server payment processing; reference at api-developers.ecommpay.com.
+  - protocol: REST
+    scheme: https
+    baseURL: https://data.ecommpay.com/v1
+    documented: true
+    note: Data API for reporting/reconciliation; reference at api-data.ecommpay.com.
+  - protocol: Webhook
+    scheme: https
+    documented: true
+    note: Asynchronous callbacks documented for Payment Page and Gate payment results.
+  auth:
+    model: HMAC signature
+    detail: >-
+      Per-project secret key and project ID; requests signed with an HMAC
+      signature over request parameters. No OAuth2/OIDC discovery metadata is
+      served.
+  developerPortal:
+    url: https://developers.ecommpay.com/
+    status: 200
+    confirmed: true
+  apiReferenceHosts:
+  - url: https://api-developers.ecommpay.com/api.html
+    status: 200
+    engine: Stoplight Elements SPA
+    downloadableSpec: false
+  - url: https://api-data.ecommpay.com/api.html
+    status: 200
+    engine: Stoplight Elements SPA
+    downloadableSpec: false
+  specsHarvested: 0
+  postman: false
+  graphql: false
+  asyncapi: false
+  homeMarket: United Kingdom
+sources:
+- url: https://developers.ecommpay.com/
+  type: DeveloperPortal
+  note: Public developer portal, HTTP 200.
+- url: https://developers.ecommpay.com/landing-en/
+  type: Documentation
+  note: Documentation hub listing Payment Page API, Gate API, Data API, and Dashboard.
+- url: https://api-developers.ecommpay.com/api.html
+  type: APIReference
+  note: Gate API reference; Stoplight Elements SPA, no static OpenAPI file (probed paths 404).
+- url: https://api-data.ecommpay.com/api.html
+  type: APIReference
+  note: Data API reference; Stoplight Elements SPA, no static OpenAPI file (probed paths 404).
+- url: https://developers.ecommpay.com/en/en_dbl_api_overview.html
+  type: Documentation
+  note: Data API overview; base https://data.ecommpay.com/v1, TLS 1.2+, signed requests.
+- url: https://github.com/ITECOMMPAY
+  type: GitHubOrganization
+  note: Public SDKs and e-commerce plugins; no OpenAPI specs published.
+- url: https://ecommpay.com/about-us/
+  type: Website
+  note: Company identity - FCA-authorised acquirer, Visa/Mastercard Principal Member.
