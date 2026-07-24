@@ -1,0 +1,85 @@
+generated: '2026-06-20'
+method: searched
+source: https://developers.ecommpay.com/en/en_test_cards.html
+docs:
+  test_cards: https://developers.ecommpay.com/en/en_test_cards.html
+  testing_overview: https://developers.ecommpay.com/en/en_pm_testing.html
+  quickstart: https://developers.ecommpay.com/en/en_gate_quickstart.html
+note: >-
+  ECOMMPAY separates test from production via test projects (a merchant is issued a
+  dedicated test project_id + secret key). Test payments run through the platform
+  exactly like production - they are registered, appear in the Dashboard, and payment
+  instrument details are processed - but no actual debiting takes place. The processing
+  scenario (success vs decline, 3-D Secure challenge vs frictionless) is selected by the
+  test card number; amount, cardholder name, and CVV can take arbitrary but well-formed
+  values (expiry cannot predate the payment date).
+mode:
+  selection: card-number-driven
+  environment: test projects (separate project_id/secret from live)
+  debiting: none (no real funds move)
+test_cards:
+  purchase_no_3ds:
+    - number: '4000000000000077'
+      network: Visa
+      outcome: success
+    - number: '4111111111111111'
+      network: Visa
+      outcome: decline
+    - number: '4000000000000119'
+      network: Visa
+      outcome: success
+      note: Payment to register a COF (credential-on-file) purchase
+    - number: '4000000000000119'
+      network: Visa
+      outcome: decline
+      note: COF debit declined due to invalid card data, error code 10102
+    - number: '4000000000000135'
+      network: Visa
+      outcome: success
+      note: Payment to register a COF purchase
+    - number: '4000000000000135'
+      network: Visa
+      outcome: decline
+      note: COF debit declined due to insufficient funds, error code 10105
+    - number: '4539121411168251'
+      network: Visa
+      outcome: decline
+      note: Declined due to an issuer timeout
+    - number: '5126160000356675'
+      network: Mastercard
+      outcome: success
+      note: Partial authorisation approved (if enabled and amount > 120 EUR)
+    - number: '4010571676223548'
+      network: Visa
+      outcome: success
+      note: Partial authorisation approved (if enabled and amount > 120 EUR)
+  purchase_with_3ds:
+    - number: '4314220000000056'
+      network: Visa
+      outcome: success
+      note: Challenge flow - ACS page displayed for code entry
+    - number: '4477000000000006'
+      network: Visa
+      outcome: success
+      note: Frictionless flow
+    - number: '5413330000000019'
+      network: Mastercard
+      outcome: success
+      note: Challenge flow - ACS page displayed for code entry
+    - number: '5544330000000045'
+      network: Mastercard
+      outcome: decline
+      note: Challenge flow - ACS page displayed for code entry
+    - number: '5252000000000004'
+      network: Mastercard
+      outcome: success
+      note: Frictionless flow
+  payouts:
+    - number: '4242424242424242'
+      network: Visa
+      outcome: success
+alternative_payments:
+  note: >-
+    Beyond test cards, the platform supports testing alternative payment methods,
+    wallets, and QR codes with dedicated test data and randomly generated credentials.
+  docs: https://developers.ecommpay.com/en/en_pm_testing.html

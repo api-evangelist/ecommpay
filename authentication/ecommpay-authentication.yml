@@ -1,0 +1,43 @@
+generated: '2026-06-20'
+method: searched
+source: https://developers.ecommpay.com/en/en_Gate_Integration_About.html
+docs:
+  gate_signature: https://developers.ecommpay.com/en/en_gate_signature_intro.html
+  data_signature: https://developers.ecommpay.com/en/en_dbl_signature_intro.html
+  callbacks: https://developers.ecommpay.com/en/en_platform_callbacks.html
+note: >-
+  ECOMMPAY does not use OAuth2 or bearer tokens. Every request is identified by a
+  numeric project_id (issued to the merchant) and authenticated with a per-request
+  HMAC digital signature computed over the request parameters using the project's
+  secret key. The same signature scheme is applied in reverse to verify inbound
+  callbacks. There are no OAuth scopes; there is no OpenAPI securityScheme to derive
+  from because ECOMMPAY publishes no downloadable OpenAPI (its references are
+  Stoplight Elements SPAs). This profile is therefore searched from the docs, not
+  derived from a spec.
+summary:
+  types: [signature-hmac]
+  token_based: false
+  oauth2: false
+  api_key_in: [request-body-parameter]
+schemes:
+  - name: ProjectSignature
+    type: custom-signature
+    algorithm: HMAC-SHA-512
+    encoding: base64
+    key: per-project secret key
+    identifier_parameter: project_id
+    signature_parameter: signature
+    applies_to:
+      - outgoing merchant requests (e.g. checkout, refund, payout)
+      - inbound callbacks (verify signature before trusting)
+      - certain synchronous responses (verify signature)
+    procedure: >-
+      Build the message from all request parameters except the signature; compute the
+      HMAC-SHA-512 over it with the project secret key; Base64-encode the result and
+      send it in the signature parameter. To verify a callback, remove the signature
+      parameter, recompute the HMAC over the remaining body, and compare - matching
+      signatures confirm authenticity and integrity.
+    transport: HTTPS (TLS 1.2+)
+    sdk_support: >-
+      Signature generation/verification is implemented by the official Payment Page
+      SDKs (PHP, JS, Python, Java, Go, .NET, iOS, Android) - see packages/.

@@ -1,0 +1,39 @@
+# ECOMMPAY
+
+> ECOMMPAY is a London-headquartered international payment service provider and direct card acquirer (FCA FRN 607597, PCI DSS Level 1, Visa & Mastercard Principal Member). It runs its own gateway, acquiring, and processing platform serving e-commerce merchants across Europe, the UK, and global markets with card processing, 100+ alternative and local payment methods, open banking, payouts, multi-currency settlement, and fraud prevention. Its developer surface is API-native but signature-authenticated (HMAC-SHA-512 over request parameters with a per-project secret key + numeric project_id) rather than token-based. No downloadable OpenAPI is published; API references are Stoplight Elements SPAs.
+
+## APIs
+
+- [Payment Page API](https://developers.ecommpay.com/en/en_PP_about.html): Hosted, customisable payment form; opened with a signed request, results via asynchronous signed callbacks. Base: https://paymentpage.ecommpay.com
+- [Gate API](https://developers.ecommpay.com/en/en_Gate_Integration_About.html): Server-to-server payment API for direct integration - purchases, refunds, payouts, credential-on-file. Base: https://api.ecommpay.com/v2
+- [Data API](https://developers.ecommpay.com/en/en_dbl_api_overview.html): Reporting and reconciliation data retrieval. Base: https://data.ecommpay.com/v1
+- [Dashboard](https://developers.ecommpay.com/en/en_dbl_about.html): Merchant management, analytics, and reporting interface.
+
+## Authentication & conventions
+
+- [Signature (Gate)](https://developers.ecommpay.com/en/en_gate_signature_intro.html): HMAC-SHA-512 over parameters, Base64-encoded, in the signature parameter; verify inbound callbacks the same way.
+- Idempotency: merchant-assigned payment_id must be unique per project (acts as a client idempotency key; duplicates error rather than double-charge).
+- [Handling callbacks](https://developers.ecommpay.com/en/en_platform_callbacks.html): Asynchronous signed webhook callbacks carry the operation object (status, code, message).
+- [Operation codes](https://developers.ecommpay.com/en/en_platform_payment_info_codes.html): Unified numeric operation.code + operation.message registry (378 codes) for declines and errors.
+
+## Docs
+
+- [Developer portal](https://developers.ecommpay.com/)
+- [Getting started](https://developers.ecommpay.com/en/en_getting_started.html)
+- [Gate quickstart](https://developers.ecommpay.com/en/en_gate_quickstart.html)
+- [Test cards](https://developers.ecommpay.com/en/en_test_cards.html)
+- [Testing overview](https://developers.ecommpay.com/en/en_pm_testing.html)
+- [Status page](https://status.ecommpay.com/)
+- [GitHub (ITECOMMPAY)](https://github.com/ITECOMMPAY)
+
+## Repo artifacts
+
+- Authentication profile: authentication/ecommpay-authentication.yml
+- Conventions (idempotency, tracing, error envelope): conventions/ecommpay-conventions.yml
+- Decline / error code catalog (378): errors/ecommpay-decline-codes.yml
+- Sandbox test cards: sandbox/ecommpay-sandbox.yml
+- Webhook/callback catalog: asyncapi/ecommpay-callbacks-webhooks.yml
+- Packages / SDKs: packages/ecommpay-packages.yml
+- Conformance / compliance: conformance/ecommpay-conformance.yml
+- Lifecycle: lifecycle/ecommpay-lifecycle.yml
+- Domain security: security/ecommpay-domain-security.yml

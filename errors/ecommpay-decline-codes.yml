@@ -1,0 +1,1677 @@
+generated: '2026-06-20'
+method: searched
+source: https://developers.ecommpay.com/en/en_platform_payment_info_codes.html
+docs: https://developers.ecommpay.com/en/en_platform_payment_info_codes.html
+note: ECOMMPAY unifies all operation response, decline, and error codes into a single registry surfaced to merchants in the
+  callback/response operation.code and operation.message parameters (and in Dashboard). The list below is the full unified
+  code reference (378 codes) covering both soft/hard declines and API-level errors. Code 0 = success; 100-604 = declines/processing
+  outcomes; 2xxx-3xxx = request validation and data errors. This file serves as both the DeclineCodes and the ErrorCatalog
+  for ECOMMPAY.
+envelope:
+  status_field: operation.status
+  code_field: operation.code
+  message_field: operation.message
+  statuses:
+  - success
+  - awaiting 3ds result
+  - awaiting redirect result
+  - awaiting clarification
+  - awaiting customer action
+  - awaiting merchant auth
+  - processing
+  - decline
+  - error
+masked_to_buyers: Decline reasons are surfaced to the merchant via operation.code/message; customer-facing wording is generalised.
+  Some risk-control (RCS) declines return code 402 with 'No action required' and no detailed buyer reason.
+count: 378
+decline_codes:
+- code: '0'
+  message: Success
+  description: Operation successfully completed
+  action: No action required
+- code: '100'
+  message: General decline
+  description: Operation was declined. Payment platform general error
+  action: Contact the technical support
+- code: '104'
+  message: Declined by 3DS check
+  description: Operation was declined due to unsuccessful authentication
+  action: Resend the request
+- code: '108'
+  message: Customer has not returned from ACS
+  description: Operation was declined. Customer has not returned from ACS page of the issuing bank.
+  action: Resend the request
+- code: '109'
+  message: Declined by AVS check
+  description: Operation was declined due to the incorrect entry of billing address
+  action: Correct the request before resending
+- code: '301'
+  message: Cancelled
+  description: Operation was cancelled by the participant
+  action: Resend the request
+- code: '303'
+  message: Access denied
+  description: Request is prohibited due to lack of permits
+  action: Contact the technical support
+- code: '309'
+  message: The amount received during conversion exceeds the limit
+  description: Operation was declined as the payment amount exceeds the limit specified by the payment provider
+  action: Correct the request before resending
+- code: '310'
+  message: This operation is not allowed by project settings
+  description: Operation was declined. This type of operation is not available for the project.
+  action: Contact the technical support
+- code: '314'
+  message: Provider is not available now to perform the operation
+  description: Operation was declined as the provider is not available now
+  action: Resend the request later
+- code: '318'
+  message: Use of token_data is disabled for the project
+  description: Operation was declined because the capability of processing payments with network tokens is not enabled for
+    the project
+  action: Contact the technical support
+- code: '319'
+  message: There is not enough data to create an operation
+  description: Operation was declined because the request did not contain the data required for creating an operation
+  action: Correct the request before resending
+- code: '402'
+  message: RCS reject. Declined by Risk System
+  description: Operation was declined due to suspicion of a fraud. General anti-fraud decline
+  action: No action required
+- code: '501'
+  message: Internal error
+  description: An internal error has occurred
+  action: Contact the technical support
+- code: '502'
+  message: Validation error
+  description: Received data cannot be validated
+  action: Contact the technical support
+- code: '504'
+  message: Insufficient funds on the balance
+  description: Request is prohibited due to lack of funds
+  action: Contact the technical support
+- code: '601'
+  message: Try again
+  description: An error has occurred
+  action: Resend the request
+- code: '602'
+  message: Network error
+  description: A network error occurred with one of the external services
+  action: Resend the request
+- code: '603'
+  message: Auto decline
+  description: Operation was declined because of auto decline settings
+  action: Resend the request
+- code: '604'
+  message: Payout Session Terminated. UUID Expired
+  description: Operation was declined because the uuid is no longer valid
+  action: Resend the request with the valid uuid
+- code: '702'
+  message: Malformed request
+  description: Request was rejected due to malformed format
+  action: Correct the request before resending
+- code: '903'
+  message: Exceeded allowed amount for refund
+  description: Total amount of refunds by the bank card exceeds the amount of init payments
+  action: Contact the technical support
+- code: '904'
+  message: Exceeded allowed amount for payout
+  description: The bank card exceeded the limits on the amount for payouts
+  action: Contact the technical support
+- code: '2003'
+  message: Invalid JSON string
+  description: Invalid JSON string was sent in the request
+  action: Correct the request before resending
+- code: '2004'
+  message: Required field not provided
+  description: Required parameter was not sent in the request
+  action: Correct the request before resending
+- code: '2014'
+  message: Addendum data disallowed with COF purchase registration
+  description: Addendum data in request with COF purchase registration is not allowed
+  action: Correct the request before resending
+- code: '2061'
+  message: Avs Data Not Found
+  description: Operation was declined. The AVS data is needed to proceed
+  action: Try to correct the request before resending
+- code: '2123'
+  message: Account verification is not allowed
+  description: Account verification is not allowed
+  action: Correct the request before resending
+- code: '2124'
+  message: Invalid Customer ID
+  description: Invalid customer_id was sent in the request
+  action: Correct the request before resending
+- code: '2147'
+  message: Lock Error
+  description: Operation was declined due to time-out.
+  action: Resend the request later
+- code: '2154'
+  message: Customer ID is required for project
+  description: The project settings require to pass the customer_id parameter in the request
+  action: Correct the request before resending
+- code: '2261'
+  message: Country not found
+  description: Parameter country was not found in the request
+  action: Correct the request before resending
+- code: '2426'
+  message: Invalid Email
+  description: Invalid email parameter was sent in the request
+  action: Correct the request before resending
+- code: '2442'
+  message: Project ID not found
+  description: Parameter project_id was not found in the request
+  action: Correct the request before resending
+- code: '2466'
+  message: Declined By Pares Settings
+  description: An incorrect 3‑D Secure authentication code was entered or an error occurred during the entering
+  action: Resend the request
+- code: '2467'
+  message: 3DS SDK request is not supported
+  description: The device_channel parameter specified for performing 3‑D Secure contains the App-based value that is not allowed
+    for the payment initiated by this request
+  action: Create a new request with the allowed value for the device_channel parameter and a new payment identifier or contact
+    the technical support
+- code: '2468'
+  message: 3DS 3RI request is not supported
+  description: The device_channel parameter specified for performing 3‑D Secure contains the 3DS Requestor Initiated value
+    that is not allowed for the payment initiated by this request
+  action: Create a new request with the allowed value for the device_channel parameter and a new payment identifier or contact
+    the technical support
+- code: '2541'
+  message: Unknown Payment Method
+  description: Unknown payment_method was sent in the request
+  action: Correct the request before resending
+- code: '2606'
+  message: Withdrawal without initial payment is not allowed
+  description: Withdrawal without initial payment is not allowed
+  action: Correct the request before resending
+- code: '2609'
+  message: Invalid day of birth
+  description: Invalid day_of_birth was sent in the request
+  action: Correct the request before resending
+- code: '2610'
+  message: Invalid Country
+  description: Invalid country was sent in the request
+  action: Correct the request before resending
+- code: '2611'
+  message: Invalid City
+  description: Invalid city was sent in the request
+  action: Correct the request before resending
+- code: '2641'
+  message: Invalid Bank Code or Currency
+  description: Invalid bank_id or currency was sent in the request
+  action: Correct the request before resending
+- code: '2642'
+  message: Operation amount is greater than limit
+  description: Operation amount is greater than allowed limit
+  action: Correct the request before resending
+- code: '2701'
+  message: Rules Failed Code
+  description: Operation processing failed due to business rules
+  action: Contact the technical support
+- code: '2801'
+  message: Bank ID not found
+  description: Parameter bank_id was not found in the request
+  action: Correct the request before resending
+- code: '2945'
+  message: Invalid operation type for try again request
+  description: Invalid operation type for try again the request
+  action: Correct the request before resending
+- code: '2949'
+  message: Invalid amount for try again request
+  description: Invalid amount for try again the request
+  action: Correct the request before resending
+- code: '3001'
+  message: Invalid day of birth from UK merchant
+  description: Invalid day of birth was sent in the request from UK merchant
+  action: Correct the request before resending
+- code: '3002'
+  message: Invalid Post Code from UK merchant
+  description: Invalid post code was sent in the request from UK merchant
+  action: Correct the request before resending
+- code: '3003'
+  message: Invalid Surname from UK merchant
+  description: Invalid surname was sent in the request from UK merchant
+  action: Correct the request before resending
+- code: '3004'
+  message: Invalid Street Address from UK merchant
+  description: Invalid street address was sent in the request from UK merchant
+  action: Correct the request before resending
+- code: '3020'
+  message: Period of card validity is required for the project
+  description: Card expiry date is required but was not sent in the request
+  action: Correct the request before resending
+- code: '3021'
+  message: Card expired
+  description: Card has expired
+  action: Correct the request before resending
+- code: '3022'
+  message: Customer is not presented in saved card request
+  description: Customer was not sent in the request for payment by using a saved card
+  action: Correct the request before resending
+- code: '3023'
+  message: Provided currency disabled for Project ID
+  description: Provided currency is disabled for the project_id
+  action: Contact the technical support
+- code: '3024'
+  message: Invalid Payment ID
+  description: Invalid payment_id was sent in the request
+  action: Correct the request before resending
+- code: '3026'
+  message: Internal Decline
+  description: Payment performing through this payment system is not available
+  action: Contact the technical support
+- code: '3027'
+  message: Invalid token provided
+  description: Invalid token was sent in the request
+  action: Correct the request before resending
+- code: '3028'
+  message: Insufficient funds on merchant balance
+  description: Insufficient funds on the balance to perform payout
+  action: Contact the Ecommpay key account manager
+- code: '3029'
+  message: Operation with expired card is not allowed for this provider
+  description: Operation performing was declined due to the provider does not allow using an expired card
+  action: Contact the technical support
+- code: '3041'
+  message: Payment ID already exists
+  description: Payment ID already exists in the system
+  action: Correct the request before resending
+- code: '3060'
+  message: Current payment or operation status does not allow this action
+  description: Current payment or operation status does not allow the attempted action
+  action: Contact the technical support
+- code: '3061'
+  message: Transaction not found
+  description: Payment is not found in the system
+  action: Resend the request or contact the technical support
+- code: '3062'
+  message: Payment details not received
+  description: Failed to get payment details at the moment
+  action: Resend the request later
+- code: '3081'
+  message: State Machine Flow Break
+  description: Error payment processing
+  action: Contact the technical support
+- code: '3101'
+  message: Card not found
+  description: Card data from Token does not belong to the customer in the request
+  action: Correct the request before resending
+- code: '3102'
+  message: Invalid payment constraint
+  description: Operation by the card failed to validate system business rules
+  action: Contact the technical support
+- code: '3103'
+  message: Payout was declined due to constraint for card type
+  description: Payout was declined due to issuer restrictions related to card type
+  action: Contact the technical support
+- code: '3104'
+  message: Payment Constraint Invalid Payout Amount
+  description: Maximum payout limit has been exceeded
+  action: Correct the request before resending
+- code: '3105'
+  message: Card country is forbidden
+  description: Performing an operation with the card issued in the specified country is not allowed
+  action: Correct the request before resending
+- code: '3106'
+  message: Payment Constraint Invalid Monthly Payout
+  description: Monthly payout limit has been exceeded
+  action: Resend the request later
+- code: '3107'
+  message: Payout Constraint, card without successful purchase
+  description: Payout is declined because the purchase that contains the information about the payout recipient's card could
+    not be identified
+  action: Contact the technical support
+- code: '3108'
+  message: Payment Constraint Invalid Weekly Payout
+  description: Weekly payout limit has been exceeded
+  action: Resend the request later
+- code: '3109'
+  message: Payment Constraint Invalid 24 Hour Payout
+  description: Daily payout limit has been exceeded
+  action: Resend the request later
+- code: '3110'
+  message: Payment Constraint Monthly payout operations number exceeded
+  description: Monthly limit on the number of payouts has been exceeded
+  action: Resend the request later
+- code: '3111'
+  message: Payment Constraint Weekly payout operations number exceeded
+  description: Weekly limit on the number of payouts has been exceeded
+  action: Resend the request later
+- code: '3112'
+  message: Payment Constraint 24 hour payout operations number exceeded
+  description: Daily limit on the number of payouts has been exceeded
+  action: Resend the request later
+- code: '3117'
+  message: Operation is prohibited because residual payment amount is less than one minor in USD
+  description: The operation is declined because the difference between the actual payment amount and the operation amount
+    is less than required (0.01 USD)
+  action: 'Correct the request before resending: specify a lesser amount or a full amount of the payment'
+- code: '3118'
+  message: Operation amount will be less than one minor unit after conversion by IPS
+  description: The operation is rejected because the operation amount will be less than one minor unit after the conversion
+    performed by the global card network
+  action: Correct the request before resending
+- code: '3119'
+  message: Request currency does not match channel currency
+  description: Currency specified in the request does not match the channel currency
+  action: Correct the request before resending
+- code: '3120'
+  message: The payment amount should not exceed 25 USD for the MCC
+  description: Operation performing was declined as the payment amount for the MCC should not exceed 25 USD or equivalent
+    amount
+  action: Correct the request before resending
+- code: '3121'
+  message: Invalid currency
+  description: Invalid currency was sent in the request
+  action: Correct the request before resending
+- code: '3123'
+  message: Invalid API Key
+  description: Invalid API Key was sent in the request
+  action: Correct the request before resending
+- code: '3124'
+  message: Invalid certificate
+  description: Error while request processing
+  action: Contact the technical support
+- code: '3125'
+  message: Incremental authorization requests are forbidden for the MCC
+  description: Requests to increment authorization amount are forbidden for the MCC
+  action: Correct the request before resending
+- code: '3141'
+  message: CVV is required
+  description: CVV is required in the request
+  action: Correct the request before resending
+- code: '3161'
+  message: Invalid Holder
+  description: Invalid card_holder was sent in the request
+  action: Correct the request before resending
+- code: '3162'
+  message: Cardholder is required
+  description: The card_holder parameter was not included in the request
+  action: Correct the request before resending
+- code: '3181'
+  message: COF purchase registration ID not found
+  description: Identifier of the COF purchase registration passed in the request was not found
+  action: Correct the request before resending
+- code: '3182'
+  message: Duplicate COF purchase scheduled payment ID
+  description: Payment identifier for the COF purchase is duplicated
+  action: Correct the request before resending
+- code: '3183'
+  message: COF purchase registration ID is invalidated due to card expiry date
+  description: Card for the specified COF purchase registration ID has expired
+  action: No actions required
+- code: '3184'
+  message: COF purchase registration ID is cancelled
+  description: The COF purchase for the passed recurring_id was canceled
+  action: Contact the technical support
+- code: '3186'
+  message: Trigger operation ID is not found
+  description: Identifier of the debit operation that requires cancelling retry attempts was not found.
+  action: Correct the request before resending
+- code: '3190'
+  message: Remittance payment method mismatched
+  description: Request payment method and the recipient account's payment method do not match
+  action: Correct the request before resending
+- code: '3191'
+  message: Need clarification
+  description: Additional payment information submission is needed
+  action: Correct the request before resending
+- code: '3192'
+  message: Remittance currency mismatched
+  description: Request currency and the recipient account's currency do not match
+  action: Correct the request before resending
+- code: '3193'
+  message: Remittance is not allowed for this project
+  description: B2B remittances are not available for this project
+  action: Contact the technical support
+- code: '3194'
+  message: Recipient ID is not found
+  description: Specified Recipient ID is not found
+  action: Correct the request before resending
+- code: '3195'
+  message: Recipient ID is forbidden
+  description: B2B payment to the account with the specified Recipient ID is forbidden
+  action: Correct the request before resending
+- code: '3196'
+  message: Remittance is not supported by payment system
+  description: The remittance payment type is not supported by the payment system
+  action: Contact the technical support
+- code: '3197'
+  message: Remittance is not allowed for this payment method
+  description: The remittance payment type is not allowed for this payment method
+  action: Contact the technical support
+- code: '3198'
+  message: Auto decline due to long verification
+  description: Operation was declined because the approval check by the AML specialists of Ecommpay timed out
+  action: Contact the technical support and try sending the request later
+- code: '3199'
+  message: Operation was declined by AML checks
+  description: Operation was declined following the approval check by the AML specialists of Ecommpay
+  action: Contact your account manager
+- code: '3201'
+  message: Expected error
+  description: Operation performing was rejected due to payment routing error
+  action: Contact the technical support
+- code: '3221'
+  message: Card token not found
+  description: Token was not found in the request
+  action: Correct the request before resending
+- code: '3230'
+  message: The operation with such merchant_refund_id already exists
+  description: Operation performing was rejected as the merchant refund ID passed in the request already exists in the payment
+    platform
+  action: Correct the request before resending
+- code: '3241'
+  message: Customer not found
+  description: Customer is not match the token in the request
+  action: Correct the request before resending
+- code: '3242'
+  message: Account must be defined
+  description: Account object is required for this payment method
+  action: Correct the request before resending
+- code: '3243'
+  message: Account must not be defined
+  description: Account object is disallowed for this payment method
+  action: Correct the request before resending
+- code: '3244'
+  message: Bank id must be defined
+  description: Bank ID is required for this payment method
+  action: Correct the request before resending
+- code: '3261'
+  message: Invalid signature
+  description: Invalid signature was sent in the request
+  action: Correct the request before resending
+- code: '3262'
+  message: Empty signature
+  description: The value of the signature in the request is empty
+  action: Correct the request before resending
+- code: '3281'
+  message: Converted amount is less than one minor unit
+  description: Converted amount is less than one minor currency unit
+  action: Contact the technical support
+- code: '3283'
+  message: Refund amount more than init amount
+  description: Refund amount is more than initial amount
+  action: Correct the request before resending
+- code: '3284'
+  message: Refund currency mismatched or empty
+  description: Refund currency mismatches or is empty
+  action: Correct the request before resending
+- code: '3285'
+  message: Cannot make refund because of timeout block for repeat refund
+  description: The operation was rejected due to restrictions on the frequency of refund requests
+  action: Contact the technical support
+- code: '3286'
+  message: The property amount is required
+  description: Missing amount in request. When passing the currency parameter, you must pass the amount parameter
+  action: Correct the request before resending
+- code: '3287'
+  message: The property currency is required
+  description: The currency parameter in the request is missing. When passing the amount parameter, you must pass the currency
+    parameter
+  action: Correct the request before resending
+- code: '3288'
+  message: Refund prohibited on disputed transaction
+  description: Refund performing is prohibited for payments with chargebacks
+  action: Contact the technical support
+- code: '3289'
+  message: The operation amount is less than fix fee of tariff
+  description: The operation was rejected because the amount is less than fix fee of tariff
+  action: Correct the request before resending
+- code: '3291'
+  message: Incorrect merchant account settings for operation
+  description: The operation was rejected because only one operation type is allowed for the merchant account
+  action: Correct the request before resending
+- code: '3292'
+  message: Online gambling payouts are not available for this MCC
+  description: Online gambling payouts are not available for this MCC
+  action: Contact the technical support
+- code: '3293'
+  message: Payout method not filled in merchant account
+  description: Payout method not filled in merchant account
+  action: Contact the technical support
+- code: '3297'
+  message: The provider's daily limit for the merchant account for the total amount of transactions has been exceeded
+  description: Operation was declined because the total amount of operations exceeds the daily limit imposed by the payment
+    provider for the merchant account
+  action: Resend the request later
+- code: '3298'
+  message: The provider's daily limit on the total amount of transactions has been exceeded
+  description: Operation was declined because the total amount of operations exceeds the daily limit imposed by the payment
+    provider
+  action: Resend the request later
+- code: '3299'
+  message: Sorry, the merchant status does not allow you to create an operation
+  description: Operation cannot be created for this merchant
+  action: Contact the technical support
+- code: '3301'
+  message: Recurring registration is expired
+  description: Operation was rejected because a registered COF purchase associated with this ID has expired
+  action: Correct the request before resending
+- code: '3305'
+  message: Payment Constraint 30-days Payout operations number exceeded for MCC 7995, 9406 Domestic
+  description: Operation performing was rejected due to exceeding the monthly operations limit on payouts for MCC 7995, 9406
+    Domestic
+  action: Resend the request later
+- code: '3306'
+  message: Payment Constraint 30-days Payout operations number exceeded for MCC 7995, 9406 Cross-border
+  description: Operation performing was rejected due to exceeding the monthly limit operations on payouts for MCC 7995, 9406
+    Cross-border
+  action: Resend the request later
+- code: '3307'
+  message: Payment Constraint 30-days Payout operations number exceeded for Money transfer Domestic
+  description: Operation performing was rejected due to exceeding the monthly operations limit on payouts for domestic money
+    transfers
+  action: Resend the request later
+- code: '3308'
+  message: Payment Constraint 30-days Payout operations number exceeded for Money transfer Cross-border
+  description: Operation performing was rejected due to exceeding the monthly operations limit on payouts for cross-border
+    money transfers
+  action: Resend the request later
+- code: '3309'
+  message: Payment Constraint 30-days Payout operations number exceeded for Funds disbursement Domestic
+  description: Operation performing was rejected due to exceeding the monthly operations limit on payouts for domestic funds
+    disbursements
+  action: Resend the request later
+- code: '3310'
+  message: Payment Constraint 30-days Payout operations number exceeded for Funds disbursement Cross-border
+  description: Operation performing was rejected due to exceeding the monthly operations limit on payouts for cross-border
+    funds disbursements
+  action: Resend the request later
+- code: '3311'
+  message: Payment Constraint Invalid Weekly Payout for MCC 7995, 9406 Domestic
+  description: Operation performing was rejected due to exceeding the weekly limit on payouts for MCC 7995, 9406 Domestic
+  action: Resend the request later
+- code: '3312'
+  message: Payment Constraint Invalid Weekly Payout for MCC 7995, 9406 Cross-border
+  description: Operation performing was rejected due to exceeding the weekly limit on payouts for MCC 7995, 9406 Cross-border
+  action: Resend the request later
+- code: '3313'
+  message: Payment Constraint Invalid Weekly Payout for Money transfer Domestic
+  description: Operation performing was rejected due to exceeding the 100 000 USD weekly limit on payouts for domestic money
+    transfers
+  action: Resend the request later
+- code: '3314'
+  message: Payment Constraint Invalid Weekly Payout for Money transfer Cross-border
+  description: Operation performing was rejected due to exceeding the 100 000 USD weekly limit on payouts for cross-border
+    money transfers
+  action: Resend the request later
+- code: '3315'
+  message: Payment Constraint Invalid Weekly Payout for Funds disbursement Domestic
+  description: Operation performing was rejected due to exceeding the 600 000 USD weekly limit on payouts for domestic funds
+    disbursements
+  action: Resend the request later
+- code: '3316'
+  message: Payment Constraint Invalid Weekly Payout for Funds disbursement Cross-border
+  description: Operation performing was rejected due to exceeding the 250 000 USD weekly limit on payouts for cross-border
+    funds disbursements
+  action: Resend the request later
+- code: '3317'
+  message: Payment Constraint Invalid 24 Hour Payout for MCC 7995, 9406 Domestic
+  description: Operation performing was rejected due to exceeding the daily limit on payouts for MCC 7995, 9406 Domestic
+  action: Resend the request later
+- code: '3318'
+  message: Payment Constraint Invalid 24 Hour Payout for MCC 7995, 9406 Cross-border
+  description: Operation performing was rejected due to exceeding the daily limit on payouts for MCC 7995, 9406 Cross-border
+  action: Resend the request later
+- code: '3319'
+  message: Payment Constraint Invalid 24 Hour Payout for Money transfer Domestic
+  description: Operation performing was rejected due to exceeding the 50 000 USD daily limit on payouts for domestic money
+    transfers
+  action: Resend the request later
+- code: '3320'
+  message: Payment Constraint Invalid 24 Hour Payout for Money transfer Cross-border
+  description: Operation performing was rejected due to exceeding the 50 000 USD daily limit on payouts for cross-border money
+    transfers
+  action: Resend the request later
+- code: '3321'
+  message: Payment Constraint Invalid 24 Hour Payout for Funds disbursement Domestic
+  description: Operation performing was rejected due to exceeding the 250 000 USD daily limit on payouts for domestic funds
+    disbursements
+  action: Resend the request later
+- code: '3322'
+  message: Payment Constraint Invalid 24 Hour Payout for Funds disbursement Cross-border
+  description: Operation performing was rejected due to exceeding the 100 000 USD daily limit on payouts for cross-border
+    funds disbursements
+  action: Resend the request later
+- code: '3323'
+  message: Payment Constraint Invalid 30-days Payout for MCC 7995, 9406 Domestic
+  description: Operation performing was rejected due to exceeding the monthly limit on payouts amount for MCC 7995, 9406 Domestic
+  action: Resend the request later
+- code: '3324'
+  message: Payment Constraint Invalid 30-days Payout for MCC 7995, 9406 Cross-border
+  description: Operation performing was rejected due to exceeding the monthly limit on payouts amount for MCC 7995, 9406 Cross-border
+  action: Resend the request later
+- code: '3325'
+  message: Payment Constraint Invalid 30-days Payout for Money transfer Domestic
+  description: Operation performing was rejected due to exceeding the 200 000 USD monthly limit on payouts amount for domestic
+    money transfers
+  action: Resend the request later
+- code: '3326'
+  message: Payment Constraint Invalid 30-days Payout for Money transfer Cross-border
+  description: Operation performing was rejected due to exceeding the 200 000 USD monthly limit on payouts amount for cross-border
+    money transfers
+  action: Resend the request later
+- code: '3327'
+  message: Payment Constraint Invalid 30-days Payout for Funds disbursement Domestic
+  description: Operation performing was rejected due to exceeding the 1 250 000 USD monthly limit on payouts amount for domestic
+    funds disbursements
+  action: Resend the request later
+- code: '3328'
+  message: Payment Constraint Invalid 30-days Payout for Funds disbursement Cross-border
+  description: Operation performing was rejected due to exceeding the 500 000 USD monthly limit on payouts amount for cross-border
+    funds disbursements
+  action: Resend the request later
+- code: '3329'
+  message: Payment Constraint Weekly payout operations number exceeded for MCC 7995, 9406 Domestic
+  description: Operation performing was rejected due to exceeding the weekly limit on payouts number for MCC 7995, 9406 Domestic
+  action: Resend the request later
+- code: '3330'
+  message: Payment Constraint Weekly payout operations number exceeded for MCC 7995, 9406 Cross-border
+  description: Operation performing was rejected due to exceeding the weekly limit on payouts number for MCC 7995, 9406 Cross-border
+  action: Resend the request later
+- code: '3331'
+  message: Payment Constraint Weekly payout operations number exceeded for Money transfer Domestic
+  description: Operation performing was rejected due to exceeding the weekly limit on payouts number for domestic money transfers
+  action: Resend the request later
+- code: '3332'
+  message: Payment Constraint Weekly payout operations number exceeded for Money transfer Cross-border
+  description: Operation performing was rejected due to exceeding the weekly limit on payouts number for cross-border money
+    transfers
+  action: Resend the request later
+- code: '3333'
+  message: Payment Constraint Weekly payout operations number exceeded for Funds disbursement Domestic
+  description: Operation performing was rejected due to exceeding the weekly limit on payouts number for domestic funds disbursements
+  action: Resend the request later
+- code: '3334'
+  message: Payment Constraint Weekly payout operations number exceeded for Funds disbursement Cross-border
+  description: Operation performing was rejected due to exceeding the weekly limit on payouts number for cross-border funds
+    disbursements
+  action: Resend the request later
+- code: '3335'
+  message: Payment Constraint 24 hour payout operations number exceeded for MCC 7995, 9406 Domestic
+  description: Operation performing was rejected due to exceeding the daily limit on payouts number for MCC 7995, 9406 Domestic
+  action: Resend the request later
+- code: '3336'
+  message: Payment Constraint 24 hour payout operations number exceeded for MCC 7995, 9406 Cross-border
+  description: Operation performing was rejected due to exceeding the daily limit on payouts number for MCC 7995, 9406 Cross-border
+  action: Resend the request later
+- code: '3337'
+  message: Payment Constraint 24 hour payout operations number exceeded for Money transfer Domestic
+  description: Operation performing was rejected due to exceeding the daily limit on payouts number for domestic money transfers
+  action: Resend the request later
+- code: '3338'
+  message: Payment Constraint 24 hour payout operations number exceeded for Money transfer Cross-border
+  description: Operation performing was rejected due to exceeding the daily limit on payouts number for cross-border money
+    transfers
+  action: Resend the request later
+- code: '3339'
+  message: Payment Constraint 24 hour payout operations number exceeded for Funds disbursement Domestic
+  description: Operation performing was rejected due to exceeding the daily limit on payouts number for domestic funds disbursements
+  action: Resend the request later
+- code: '3340'
+  message: Payment Constraint 24 hour payout operations number exceeded for Funds disbursement Cross-border
+  description: Operation performing was rejected due to exceeding the daily limit on payouts number for cross-border funds
+    disbursements
+  action: Resend the request later
+- code: '3341'
+  message: Payout was declined due to card constraints
+  description: Operation was declined due to issuer restrictions
+  action: Contact the technical support
+- code: '3355'
+  message: Payment Constraint 24 hour operations number exceeded for same card
+  description: Operation performing was rejected due to exceeding the daily limit on operations number for the same card
+  action: Resend the request later
+- code: '3356'
+  message: The operation is not allowed for this card
+  description: The payment is declined because payment operations are prohibited for this card
+  action: No action required
+- code: '3357'
+  message: Payment Constraint 30-days operations number exceed for same card
+  description: Operation performing was rejected due to exceeding the monthly limit on operations number for the same card
+  action: Resend the request later
+- code: '3358'
+  message: Operation amount is less than limit
+  description: Operation amount is less than allowed limit
+  action: Correct the request before resending
+- code: '3360'
+  message: Payment amount cannot exceed 50 EUR for prepaid non-reloadable card
+  description: If the sender uses a prepaid non-reloadable card, the amount to be debited cannot exceed 50 EUR
+  action: Correct the request before resending
+- code: '3362'
+  message: Payment Constraint Invalid 30-days Payout for MCC 7995, 9406
+  description: Operation performing was rejected due to exceeding the 50 000 USD monthly limit on payouts amount for MCC 7995,
+    9406
+  action: Resend the request later
+- code: '3363'
+  message: Trace ID must be present in recurring payment and MIT
+  description: There was an error while processing the request
+  action: Contact the technical support
+- code: '3400'
+  message: AFT Payment Constraint for Commercial cards
+  description: Operation was declined due to restrictions on using commercial cards by sender
+  action: Correct the request before resending
+- code: '3402'
+  message: Payment Constraint 25000 USD Amount limit exceeded for MoneySend Funding Transaction by Consumer cards
+  description: Operation performing was rejected due to exceeding the 25 000 USD limit on one MoneySend Funding Transaction
+    for consumer cards
+  action: Correct the request before resending
+- code: '3403'
+  message: Payment Constraint 50000 USD Amount limit exceeded for MoneySend Funding Transaction by Small business cards
+  description: Operation performing was rejected due to exceeding the 50 000 USD limit on one MoneySend Funding Transaction
+    for small business cards
+  action: Correct the request before resending
+- code: '3404'
+  message: Payment Constraint 25000 USD Amount limit exceeded for MoneySend payout by Consumer cards
+  description: Operation performing was rejected due to exceeding the 25 000 USD limit on one MoneySend payout for consumer
+    cards
+  action: Correct the request before resending
+- code: '3406'
+  message: Payment Constraint 50000 USD Amount limit exceeded for MoneySend payout by Small business cards
+  description: Operation performing was rejected due to exceeding the 50 000 USD limit on one MoneySend payout for small business
+    cards
+  action: Correct the request before resending
+- code: '3407'
+  message: Payment Constraint Invalid 30-days MoneySend payout for Consumer cards
+  description: Operation performing was rejected due to exceeding the monthly 25 000 USD limit on MoneySend payouts for consumer
+    cards
+  action: Resend the request later
+- code: '3408'
+  message: Payment Constraint Invalid 30-days MoneySend payout for Small business cards
+  description: Operation performing was rejected due to exceeding the monthly 50 000 USD limit on MoneySend payouts for small
+    business cards
+  action: Resend the request later
+- code: '3409'
+  message: Payment Constraint 2500 USD Amount limit exceeded for MoneySend Funding Transaction by Consumer cards
+  description: Operation performing was rejected due to exceeding the 2 500 USD limit on one MoneySend Funding Transaction
+    for consumer cards
+  action: Correct the request before resending
+- code: '3410'
+  message: Payment Constraint 2500 USD Amount limit exceeded for MoneySend payout by Consumer cards
+  description: Operation performing was rejected due to exceeding the 2 500 USD limit on one MoneySend payout for consumer
+    cards
+  action: Correct the request before resending
+- code: '3411'
+  message: Payment cannot be made due to location of the sender's card issuer outside the Europe Region
+  description: The sender's card issuer must be located in the European region
+  action: Correct the request before resending
+- code: '3412'
+  message: Payment Constraint 25000 USD Amount limit exceeded for MoneySend payout by Small business cards
+  description: Operation performing was rejected due to exceeding the 25 000 USD limit on one MoneySend payout for small business
+    cards
+  action: Correct the request before resending
+- code: '3413'
+  message: Payment Constraint 25000 USD Amount limit exceeded for MoneySend Funding Transaction by Small business cards
+  description: Operation performing was rejected due to exceeding the 25 000 USD limit on one MoneySend Funding Transaction
+    for small business cards
+  action: Correct the request before resending
+- code: '3414'
+  message: Payment Constraint 50000 USD Amount limit exceeded for MoneySend payout by Consumer cards
+  description: Operation performing was rejected due to exceeding the 50 000 USD limit on one MoneySend payout for consumer
+    cards
+  action: Correct the request before resending
+- code: '3415'
+  message: Payment Constraint 100000 USD Amount limit exceeded for MoneySend payout by Small business cards
+  description: Operation performing was rejected due to exceeding the 100 000 USD limit on one MoneySend payout for small
+    business cards
+  action: Correct the request before resending
+- code: '3416'
+  message: Payment Constraint 50000 USD Amount limit exceeded for MoneySend Funding Transaction by Consumer cards
+  description: Operation performing was rejected due to exceeding the 50 000 USD limit on one MoneySend Funding Transaction
+    for consumer cards
+  action: Correct the request before resending
+- code: '3417'
+  message: Payment Constraint 100000 USD Amount limit exceeded for MoneySend Funding Transaction by Small business cards
+  description: Operation performing was rejected due to exceeding the 100 000 USD limit on one MoneySend Funding Transaction
+    for small business cards
+  action: Correct the request before resending
+- code: '3418'
+  message: Payment Constraint 75000 USD Amount limit exceeded for MoneySend payout by Small business cards
+  description: Operation performing was rejected due to exceeding the 75 000 USD limit on one MoneySend payout for small business
+    cards
+  action: Correct the request before resending
+- code: '3419'
+  message: Payment Constraint 75000 USD Amount limit exceeded for MoneySend Funding Transaction by Small business cards
+  description: Operation performing was rejected due to exceeding the 75 000 USD limit on one MoneySend Funding Transaction
+    for small business cards
+  action: Correct the request before resending
+- code: '3431'
+  message: Money transfer is not possible for two identical cards
+  description: The sender's PAN matches the recipient's PAN
+  action: Correct the request before resending
+- code: '3432'
+  message: The request must contain either the identifier of the saved card or complete card details
+  description: Both the saved card ID and complete card details have been passed in objects sender and/or recipient
+  action: Correct the request before resending
+- code: '3433'
+  message: The request contains complete card details for both cards. This endpoint is for making a payment using saved card
+    data only
+  description: Complete card details of both the sender and the recipient have been specified in the request. Note that this
+    endpoint is intended only for sending requests to make payments using saved card data
+  action: Correct the request before resending
+- code: '3434'
+  message: The sender's card expired
+  description: The card of the sender has expired
+  action: Correct the request before resending
+- code: '3435'
+  message: The recipient's card expired
+  description: The card of the recipient has expired
+  action: Correct the request before resending
+- code: '3436'
+  message: The sender's card is invalid
+  description: The sender's card specified in the request is invalid
+  action: Correct the request before resending
+- code: '3437'
+  message: The recipient's card is invalid
+  description: The recipient's card specified in the request is invalid
+  action: Correct the request before resending
+- code: '3438'
+  message: Saved sender card has no expiration date
+  description: The sender's card expiry date is needed to proceed
+  action: Correct the request before resending
+- code: '3439'
+  message: The saved card has no expiration date
+  description: The card expiry date is needed to proceed
+  action: Correct the request before resending
+- code: '3450'
+  message: Payment Constraint Invalid 24 Hour AFT for Money transfer Domestic
+  description: Operation performing was rejected due to exceeding the 100 000 USD daily limit on AFT amount for domestic money
+    transfers
+  action: Resend the request later
+- code: '3451'
+  message: Payment Constraint Invalid Weekly AFT for Money transfer Domestic
+  description: Operation performing was rejected due to exceeding the 250 000 USD weekly limit on AFT amount for domestic
+    money transfers
+  action: Resend the request later
+- code: '3452'
+  message: Payment Constraint Invalid 30-days AFT for Money transfer Domestic
+  description: Operation performing was rejected due to exceeding the 500 000 USD monthly limit on AFT amount for domestic
+    money transfers
+  action: Resend the request later
+- code: '3470'
+  message: Payment was declined due to sender's card constraints
+  description: Operation performing was rejected due to the type of the sender's card
+  action: Contact the technical support
+- code: '3471'
+  message: Payment was declined due to recipient's card constraints
+  description: Operation performing was rejected due to the type of the recipient's card
+  action: Contact the technical support
+- code: '3472'
+  message: Payment was declined due to constraints in the region of the recipient card
+  description: Operation performing was rejected due to the region of the recipient's card issuer
+  action: Contact your key account manager
+- code: '3480'
+  message: Payment cannot be made due to location of the sender's card issuer outside the EEA
+  description: The sender's card issuer cannot be located outside the EEA
+  action: Correct the request before resending
+- code: '3490'
+  message: Required fields for Debt Repayment are missing
+  description: The required parameters for performing a debt repayment operation are not specified in the request
+  action: Correct the request before resending
+- code: '3491'
+  message: Invalid card type for Debt Repayment
+  description: Invalid card type for performing a debt repayment operation
+  action: Correct the request before resending
+- code: '3606'
+  message: Payment Constraint Invalid 30-days MoneySend Funding Transaction for Consumer cards
+  description: Operation performing was rejected due to exceeding the monthly amount limit on Moneysend Funding Transaction
+    for consumer cards
+  action: Resend the request later, upon the expiration of the current 30-day period
+- code: '3607'
+  message: Payment Constraint Invalid 30-days MoneySend Funding Transaction for Small business cards
+  description: Operation performing was rejected due to exceeding the monthly amount limit on Moneysend Funding Transaction
+    for small business cards
+  action: Resend the request later, upon the expiration of the current 30-day period
+- code: '3609'
+  message: Operation amount must be equal to the initial amount
+  description: Operation amount must be the same as the amount of the initial operation
+  action: Correct the request before resending
+- code: '3610'
+  message: Refund unavailable for the current operation
+  description: Refund is prohibited for this operation
+  action: Contact the technical support
+- code: '3611'
+  message: AFT reversal must be used to refund within the first 24 hours of the original AFT
+  description: This operation can be cancelled only within the first 24 hours after it was initially executed
+  action: Contact the technical support
+- code: '3612'
+  message: One or more required money transfer fields are empty
+  description: Additional information about the sender and/or the recipient is required
+  action: Correct the request before resending
+- code: '3613'
+  message: Duplicate operation
+  description: Operation rejected because an operation with the same customer ID and payment amount already exists
+  action: Resend the request later
+- code: '3617'
+  message: Not allowed mcc for pan with product code = F2
+  description: Merchants using this MCC are not eligible for performing operations with this type of card (product code F2)
+  action: Contact the technical support
+- code: '3618'
+  message: Payment Constraint 10000 USD Amount limit exceeded for MoneySend payout by Consumer cards
+  description: Operation performing was rejected due to exceeding the 10 000 USD limit on one MoneySend payout for consumer
+    cards
+  action: Correct the request before resending You can split the operation amount into several and send several requests with
+    each amount not exceeding the limit
+- code: '3619'
+  message: Payment Constraint 10000 USD Amount limit exceeded for MoneySend payout by Small business cards
+  description: Operation performing was rejected due to exceeding the 10 000 USD limit on one MoneySend payout for small business
+    cards
+  action: Correct the request before resending You can split the operation amount into several and send several requests with
+    each amount not exceeding the limit
+- code: '3620'
+  message: Payment Constraint 125000 USD Amount limit exceeded for MoneySend payout by Consumer cards
+  description: Operation performing was rejected due to exceeding the 125 000 USD limit on one MoneySend payout for consumer
+    cards
+  action: Correct the request before resending You can split the operation amount into several and send several requests with
+    each amount not exceeding the limit
+- code: '3621'
+  message: Payment Constraint 125000 USD Amount limit exceeded for MoneySend payout by Small business cards
+  description: Operation performing was rejected due to exceeding the 125 000 USD limit on one MoneySend payout for small
+    business cards
+  action: Correct the request before resending You can split the operation amount into several and send several requests with
+    each amount not exceeding the limit
+- code: '3622'
+  message: Payment Constraint 125000 USD Amount limit exceeded for MoneySend Funding Transaction by Consumer cards
+  description: Operation performing was rejected due to exceeding the 125 000 USD limit on one MoneySend Funding Transaction
+    for consumer cards
+  action: Correct the request before resending You can split the operation amount into several and send several requests with
+    each amount not exceeding the limit
+- code: '3623'
+  message: Payment Constraint 125000 USD Amount limit exceeded for MoneySend Funding Transaction by Small business cards
+  description: Operation performing was rejected due to exceeding the 125 000 USD limit on one MoneySend Funding Transaction
+    for small business cards
+  action: Correct the request before resending You can split the operation amount into several and send several requests with
+    each amount not exceeding the limit
+- code: '3624'
+  message: Payment Constraint 10000 USD Amount limit exceeded for MoneySend Funding Transaction by Consumer cards
+  description: Operation performing was rejected due to exceeding the 10 000 USD limit on one MoneySend Funding Transaction
+    for consumer cards
+  action: Correct the request before resending You can split the operation amount into several and send several requests with
+    each amount not exceeding the limit
+- code: '3625'
+  message: Payment Constraint 10000 USD Amount limit exceeded for MoneySend Funding Transaction by Small business cards
+  description: Operation performing was rejected due to exceeding the 10 000 USD limit on one MoneySend Funding Transaction
+    for small business cards
+  action: Correct the request before resending You can split the operation amount into several and send several requests with
+    each amount not exceeding the limit
+- code: '3626'
+  message: Payment Constraint Invalid 24 Hour payout for MoneySend by Consumer cards
+  description: Operation performing was rejected due to exceeding the daily limit on the number of payouts for consumer cards
+  action: Resend the request later, upon the expiration of the 24-hour period
+- code: '3627'
+  message: Payment Constraint Invalid 24 Hour payout for MoneySend by Small business cards
+  description: Operation performing was rejected due to exceeding the daily limit on the number of payouts for small business
+    cards
+  action: Resend the request later, upon the expiration of the 24-hour period
+- code: '3628'
+  message: Payment Constraint Invalid 24 Hour funding for MoneySend by Consumer cards
+  description: Operation performing was rejected due to exceeding the daily limit on the number of funding operations for
+    consumer cards
+  action: Resend the request later, upon the expiration of the 24-hour period
+- code: '3629'
+  message: Payment Constraint Invalid 24 Hour funding for MoneySend by Small business cards
+  description: Operation performing was rejected due to exceeding the daily limit on the number of funding operations for
+    small business cards
+  action: Resend the request later, upon the expiration of the 24-hour period
+- code: '3630'
+  message: Payment Constraint Invalid Weekly payout for MoneySend by Consumer cards
+  description: Operation performing was rejected due to exceeding the weekly limit on the number of payouts for consumer cards
+  action: Resend the request later, upon the expiration of the current 7-day period
+- code: '3631'
+  message: Payment Constraint Invalid Weekly payout for MoneySend by Small business cards
+  description: Operation performing was rejected due to exceeding the weekly limit on the number of payouts for small business
+    cards
+  action: Resend the request later, upon the expiration of the current 7-day period
+- code: '3632'
+  message: Payment Constraint Invalid Weekly funding for MoneySend by Consumer cards
+  description: Operation performing was rejected due to exceeding the weekly limit on the number of funding operations for
+    consumer cards
+  action: Resend the request later, upon the expiration of the current 7-day period
+- code: '3633'
+  message: Payment Constraint Invalid Weekly funding for MoneySend by Small business cards
+  description: Operation performing was rejected due to exceeding the weekly limit on the number of funding operations for
+    small business cards
+  action: Resend the request later, upon the expiration of the current 7-day period
+- code: '3634'
+  message: Payment Constraint Invalid 24 Hour for Payout mcc 7995, 9406 by Consumer cards
+  description: Operation performing was rejected due to exceeding the daily limit on the number of payouts for consumer cards
+    applicable if the MCC is 7995 or 9406
+  action: Resend the request later, upon the expiration of the 24-hour period
+- code: '3635'
+  message: Payment Constraint Invalid Weekly for Payout mcc 7995, 9406 by Consumer cards
+  description: Operation performing was rejected due to exceeding the weekly limit on the number of payouts for consumer cards
+    applicable if the MCC is 7995 or 9406
+  action: Resend the request later, upon the expiration of the current 7-day period
+- code: '3900'
+  message: Payment Constraint 50000 USD Amount limit exceeded for Money transfer
+  description: Operation performing was rejected due to exceeding the 50 000 USD amount limit for money transfers
+  action: Correct the request before resending
+- code: '3901'
+  message: Payment Constraint 25000 USD Amount limit exceeded for Money transfer
+  description: Operation performing was rejected due to exceeding the 25 000 USD amount limit for money transfers
+  action: Correct the request before resending
+- code: '9999'
+  message: Awaiting processing
+  description: Awaiting internal processing. Please wait
+  action: It is necessary to wait
+- code: '1401'
+  message: RCS reject. PAN is Blacklisted in RCS
+  description: Card PAN is blacklisted in RCS
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '1402'
+  message: RCS reject. Customer is Blacklisted in RCS
+  description: Customer is blacklisted in RCS
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '1403'
+  message: RCS reject. Cardholder is Blacklisted in RCS
+  description: Cardholder is blacklisted in RCS
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '1404'
+  message: RCS reject. IIN is Blacklisted in RCS
+  description: Card IIN is blacklisted in RCS
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '1405'
+  message: RCS reject. IP is Blacklisted in RCS
+  description: Customer IP address is blacklisted in RCS
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '1406'
+  message: RCS reject. Email is Blacklisted in RCS
+  description: Customer email address is blacklisted in RCS
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '1407'
+  message: RCS reject. Phone is Blacklisted in RCS
+  description: Customer phone number is blacklisted in RCS
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '1408'
+  message: RCS reject. Card is compromised
+  description: Customer card is lost or stolen
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '1409'
+  message: RCS Reject. Interval too short
+  description: Operation frequency limit has been exceeded
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '1410'
+  message: RCS reject. Domain is forbidden
+  description: The customer's email domain is blacklisted in RCS
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '1411'
+  message: RCS reject. Country is forbidden
+  description: Operation processing is prohibited for this country
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '1412'
+  message: RCS reject. Country mismatch
+  description: Country mismatch for a customer
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '1413'
+  message: RCS reject. Country limit exceeded
+  description: The limit of countries from which operations were carried out has been exceeded
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '1414'
+  message: RCS Reject. Country is forbidden for cross-border transaction
+  description: AFT operation processing is prohibited for this country
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '1415'
+  message: RCS reject. Rejected by Scoring system
+  description: Operation is rejected because it was deemed suspicious by the scoring system
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '1421'
+  message: RCS reject. Invalid amount
+  description: The specified payment amount is out of range
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '1422'
+  message: RCS reject. Amount limit exceeded
+  description: Payment amount limit has been exceeded
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '1431'
+  message: RCS reject. Allowed number of cards exceeded
+  description: Allowed number of cards used for payment processing has been exceeded
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '1432'
+  message: RCS reject. Allowed number of emails exceeded
+  description: Allowed number of emails used for payment processing has been exceeded
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '1433'
+  message: RCS reject. Count limit exceeded
+  description: Operation count limit has been exceeded
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '1434'
+  message: RCS reject. Duplicate operation
+  description: High risk of duplicated operation
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '1435'
+  message: RCS reject. Allowed number of users exceeded
+  description: Allowed number of different identifiers for the customer has been exceeded
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '1437'
+  message: RCS reject. Allowed number of names exceeded
+  description: Exceeded the allowed number of different spellings of the customer name which are treated by the RCS as different
+    cardholder names
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '1441'
+  message: RCS reject. Rejected by compliance restriction
+  description: Rejected due to compliance restrictions
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '1450'
+  message: RCS reject. Rejected by sanctions lists
+  description: Rejected due to a match with one or several sanctions lists of cardholder names
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '1451'
+  message: RCS reject. Rejected by AML restriction
+  description: Rejected as a result of an AML check
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '1452'
+  message: RCS reject. Rejected by AML UK sanction list
+  description: Rejected due to a match with the AML UK sanctions list of cardholder names
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '1453'
+  message: RCS reject. Rejected by AML US sanction list
+  description: Rejected due to a match with the AML US sanctions list of cardholder names
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '1455'
+  message: RCS reject. Rejected by AML phrase list
+  description: Rejected due to a match with the AML phrase list of cardholder names
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '1456'
+  message: RCS reject. Rejected by holdername format validation
+  description: Rejected due to failing a cardholder name validation check
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '1457'
+  message: RCS reject. Rejected by AML EU sanction list
+  description: Rejected due to a match with the AML EU sanctions list of cardholder names
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '1458'
+  message: RCS reject. Rejected by AML UN sanction list
+  description: Rejected due to a match with the AML UN sanctions list of cardholder names
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '1459'
+  message: RCS reject. Rejected by AML NL sanction list
+  description: Rejected due to a match with the AML NL sanctions list of cardholder names
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '1460'
+  message: RCS reject. Rejected by AML UAE sanction list
+  description: Rejected due to a match with the AML UAE sanctions list of cardholder names
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '1461'
+  message: RCS reject. Restricted card product code
+  description: Restricted card product code
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '1462'
+  message: RCS reject. Restricted card type
+  description: Restricted card type
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '1463'
+  message: RCS reject. Cardholder name mismatch
+  description: Cardholder name mismatch
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '1499'
+  message: RCS reject. Machine Learning recommendation
+  description: Operation is rejected as suspicious following the assessment with the use of the artificial intelligence
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '10000'
+  message: General decline
+  description: Operation was declined by PSP for an unknown reason
+  action: Resend the request
+- code: '10100'
+  message: Declined by external provider
+  description: Operation was declined by PSP without explanation
+  action: Resend the request
+- code: '10101'
+  message: Decline due to amount or frequency limit
+  description: Operation was declined due to amount or frequency limitation
+  action: Correct the request before resending or resend the request later
+- code: '10102'
+  message: Incorrect data entered
+  description: Operation was declined due to incorrect card data entry
+  action: Correct the request before resending
+- code: '10103'
+  message: Incorrect PIN or CVV
+  description: Operation was declined due to incorrect PIN or CVV entry
+  action: Correct the request before resending
+- code: '10104'
+  message: Incorrect 3DS password
+  description: Operation was declined due to incorrect 3DS password entry
+  action: Resend the request
+- code: '10105'
+  message: Insufficient funds on card
+  description: Operation was declined due to insufficient funds on the card
+  action: Resend the request
+- code: '10106'
+  message: Card expired
+  description: Operation was declined due to incorrect card expiry date entry
+  action: Correct the request before resending
+- code: '10107'
+  message: Allowable PIN tries exceeded
+  description: Operation was declined due to multiple entry of incorrect PIN
+  action: Resend the request
+- code: '10108'
+  message: Maestro MO/TO operation is prohibited for this country
+  description: Operation was declined due to a MO/TO payment is not allowed for the country in the request
+  action: Correct the request before resending
+- code: '10109'
+  message: COF payment registration or customer payment data saving is not approved by external provider
+  description: COF payment registration or customer payment data saving is not approved by external provider
+  action: Resend the request later
+- code: '10110'
+  message: Subscription is canceled by customer on the issuer side
+  description: Operation was declined because the customer cancelled the COF purchase
+  action: No required action necessary. You can also register a new COF purchase
+- code: '10112'
+  message: Insufficient Funds. Retry later
+  description: Operation was declined due to insufficient funds on the card
+  action: Resend the request later
+- code: '10113'
+  message: Insufficient Funds. Do not retry
+  description: Operation was declined due to insufficient funds on the card
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '10114'
+  message: Declined by 3DS Check
+  description: Operation was declined following the 3‑D Secure authentication attempt
+  action: Resend the request later
+- code: '10201'
+  message: Refer to card issuer
+  description: Operation was declined by the issuer
+  action: 'You can recommend your customer the following actions: Refer to the issuer in order to determine the cause of the
+    problem with the card and what can be done to solve it. Use a different payment instrument to make a payment.'
+- code: '10202'
+  message: Issuer inoperative
+  description: Operation was declined due to the unavailability of the card issuer
+  action: Resend the request
+- code: '10203'
+  message: Pick-up card
+  description: Operation was declined due to a special response from the bank that the card was compromised
+  action: No action required
+- code: '10204'
+  message: Restrictions for the customer card
+  description: Operation was declined due to restrictions on the customer card. Contact the card issuer
+  action: Correct the request before resending
+- code: '10205'
+  message: Not enrolled for 3DS
+  description: Operation was declined because the customer card does not support 3‑D Secure authentication
+  action: Correct the request before resending
+- code: '10206'
+  message: Restrictions for the customer data
+  description: Operation performing for this customer was rejected by the external provider
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '10301'
+  message: Operation was cancelled
+  description: Operation was cancelled by the participant
+  action: Resend the request
+- code: '10401'
+  message: Declined by PSP risk system
+  description: Operation was declined by PSP risk department. Do not show this message to a customer
+  action: Correct the request before resending
+- code: '10402'
+  message: Suspicious operation
+  description: Operation was declined by PSP anti-fraud system
+  action: No action required
+- code: '10403'
+  message: Fraud/Security. Try again using 3DS authentication
+  description: Operation was declined by PSP anti-fraud system because the 3‑D Secure authentication is necessary
+  action: Complete the procedure of the 3‑D Secure authentication
+- code: '10404'
+  message: Suspected fraud. Do not try again
+  description: Operation was declined by PSP anti-fraud system
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '10405'
+  message: Fraud or closed account. Do not try again
+  description: Operation was declined by PSP anti-fraud system
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '10501'
+  message: Refer to acquirer
+  description: Operation was declined due to incorrect interaction with PSP
+  action: Contact the technical support
+- code: '10502'
+  message: Error during operation validation
+  description: Operation was declined during the operation data validation process
+  action: Correct the request before resending
+- code: '10503'
+  message: Incorrect acquirer settings
+  description: Operation was declined due to incorrect settings. Contact the acquirer
+  action: Contact the technical support
+- code: '10504'
+  message: Insufficient funds on acquirer balance
+  description: Operation was declined due to insufficient funds on the acquirer balance
+  action: Contact the technical support
+- code: '10505'
+  message: PSP system is inoperative
+  description: Operation was declined due to the unavailability of PSP. Please try again later
+  action: Resend the request
+- code: '10601'
+  message: Try again
+  description: Operation was declined. Please try again
+  action: Resend the request
+- code: '10602'
+  message: Time-out
+  description: Operation was declined due to time-out. Please try again
+  action: Resend the request
+- code: '10603'
+  message: Operation could not be authorized. Try again later
+  description: Operation could not be authorized now. Please try again later
+  action: Resend the request
+- code: '10701'
+  message: Wrong requests sequence
+  description: Operation was declined due to incorrect sequence of requests
+  action: Correct the request before resending
+- code: '10702'
+  message: Invalid request
+  description: Operation was declined due to malformed format of the request
+  action: Contact the technical support
+- code: '10703'
+  message: Incorrect eci
+  description: Operation was declined due to incorrect ECI code received by the acquirer
+  action: Contact the technical support
+- code: '10704'
+  message: Card holder not found
+  description: Operation was declined because the acquirer requires a cardholder parameter
+  action: Contact the technical support
+- code: '10705'
+  message: The request contains no fields of the customer object
+  description: Operation was declined due to insufficient customer data requested by the acquirer
+  action: Contact the technical support
+- code: '10706'
+  message: Refund unavailable for current operation
+  description: Refund operation was declined by acquirer as it is unavailable
+  action: Contact the technical support
+- code: '10707'
+  message: Required rental information is not present
+  description: Operation was declined due to insufficient rental information
+  action: Contact the technical support
+- code: '10708'
+  message: Required flight details is not present
+  description: Operation was declined due to insufficient flight details
+  action: Contact the technical support
+- code: '10709'
+  message: Additional customer 3‑D Secure authentication required
+  description: Operation was declined by issuer as the customer did not passed the 3‑D Secure authentication. Please contact
+    the card issuer
+  action: Contact the technical support
+- code: '10722'
+  message: Strong Customer Authentication mandated according to PSD2
+  description: Operation was declined since it was not authenticated in accordance with the SCA (Strong Customer Authentication)
+    requirements
+  action: Contact the technical support
+- code: '10801'
+  message: External provider approved but did not process the operation
+  description: External provider approved but did not process the operation
+  action: Contact the technical support
+- code: '10805'
+  message: Life cycle (Mastercard use only)
+  description: Operation was declined by issuer due to incorrect entry of card expiry date or card number
+  action: Try to correct the request before resending
+- code: '10806'
+  message: Policy (Mastercard use only)
+  description: Operation was declined by issuer
+  action: Please contact the technical support
+- code: '10807'
+  message: Fraud/Security
+  description: Operation was declined by issuer due to suspicion of fraud
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '10810'
+  message: Life cycle. Do not try again
+  description: Operation was declined by the issuer due to incorrect entry of card expiry date or card number
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '10811'
+  message: Policy. Do not try again
+  description: Operation was declined by the issuer
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '10812'
+  message: Invalid card. Do not try again
+  description: Operation was declined by the issuer
+  action: No required action necessary. You can also contact the technical support to find out what else can be done in this
+    situation
+- code: '19999'
+  message: Awaiting processing
+  description: Awaiting external processing of the request. Please wait
+  action: It is necessary to wait
+- code: '20000'
+  message: General decline
+  description: Operation was declined for an unknown reason
+  action: Resend the request
+- code: '20100'
+  message: Declined by external provider
+  description: Operation was declined by PSP without explanation
+  action: Resend the request
+- code: '20101'
+  message: Decline due to amount or frequency limit
+  description: Operation was declined due to limitation of amount or frequency
+  action: Correct the request before resending or resend the request later
+- code: '20102'
+  message: Incorrect account data entered
+  description: Operation was declined due to incorrect account data entry
+  action: Correct the request before resending
+- code: '20103'
+  message: Incorrect login or password
+  description: Operation was declined due to incorrect customer login or password entry
+  action: Correct the request before resending
+- code: '20104'
+  message: Password attempts entry exceeded
+  description: Operation was declined due to multiple entry of incorrect password
+  action: Resend the request
+- code: '20105'
+  message: Insufficient funds on customer account
+  description: Operation was declined due to insufficient funds on the customer account
+  action: Resend the request
+- code: '20106'
+  message: Customer account is no longer available
+  description: Operation was declined due to the customer account is expired or unavailable
+  action: Correct the request before resending
+- code: '20107'
+  message: Customer account does not support requested currency
+  description: Operation was declined due to the customer account does not support requested currency
+  action: Correct the request before resending
+- code: '20109'
+  message: COF payment registration or customer payment data saving is not approved by external provider
+  description: COF payment registration or customer payment data saving is not approved by external provider
+  action: Resend the request later
+- code: '20110'
+  message: Subscription is canceled by customer on the issuer side
+  description: Subscription is canceled by customer on the issuer side
+  action: No action required
+- code: '20111'
+  message: Operation declined by PSP because the Direct Debit mandate is inactive, cancelled, or expired
+  description: Operation declined by PSP because the Direct Debit mandate is inactive, cancelled, or expired
+  action: No action required
+- code: '20201'
+  message: Restrictions for the customer account
+  description: Operation was declined due to restrictions on customer account. Contact the PSP
+  action: Correct the request before resending
+- code: '20202'
+  message: PSP system is unavailable
+  description: Operation was declined due to the unavailability of PSP. Please try again later
+  action: Resend the request
+- code: '20203'
+  message: Compromised customer account
+  description: 'Operation was declined due to a special response from the bank: customer account was compromised'
+  action: No action required
+- code: '20204'
+  message: Crediting this customer account is blocked
+  description: Operation was declined. The customer account is not allowed to perform crediting. Contact the PSP
+  action: Correct the request before resending
+- code: '20205'
+  message: Payment method is not available for customer country
+  description: Payment method is not available for customer country
+  action: No action required
+- code: '20206'
+  message: Difficulties on the mobile operator side
+  description: Operation was declined due to the technical problems on the mobile operator side
+  action: Resend the request later
+- code: '20301'
+  message: Account owner cancelled operation
+  description: Operation was declined by the account owner
+  action: Resend the request
+- code: '20302'
+  message: Unacceptable password
+  description: Password does not meet the requirements. Please try another
+  action: Correct the request before resending
+- code: '20303'
+  message: Customer is not permitted to perform the action
+  description: Request is prohibited due to lack of permits
+  action: Correct the request before resending
+- code: '20304'
+  message: Incorrect amount paid
+  description: Operation was declined due to incorrect amount paid by a customer
+  action: Resend the request
+- code: '20401'
+  message: Declined by PSP risk system
+  description: Operation was declined by PSP risk department. Do not show this message to a customer
+  action: Correct the request before resending
+- code: '20402'
+  message: Suspicious operation
+  description: Operation was declined by PSP anti-fraud system
+  action: No action required
+- code: '20450'
+  message: The Verification of Payee cannot be performed due to technical reasons.
+  description: The initiated Verification of Payee cannot be carried out due to errors in the interaction between the platform
+    and the provider service
+  action: Resend the request in several minutes. If the error persists, contact the technical support
+- code: '20451'
+  message: Payout or refund cannot be processed based on the Verification of Payee result.
+  description: The initiated operation cannot be processed due to the discrepancy between the final Verification of Payee
+    status and one of the approved algorithms ( details )
+  action: You can notify the customer about the spelling discrepancy between the specified name and the account holder's name
+    and offer to try again, clarifying the name. If the error persists, contact the technical support
+- code: '20501'
+  message: Refer to acquirer
+  description: Operation was declined due to incorrect interaction with PSP
+  action: Contact the technical support
+- code: '20502'
+  message: Error during operation validation
+  description: Operation was declined during the operation validation process
+  action: Correct the request before resending
+- code: '20503'
+  message: Incorrect acquirer settings
+  description: Operation was declined due to incorrect settings. Contact the acquirer
+  action: Contact the technical support
+- code: '20504'
+  message: Insufficient funds on acquirer balance
+  description: Operation was declined due to insufficient funds on the acquirer balance
+  action: Contact the technical support
+- code: '20601'
+  message: Try again
+  description: Operation was declined. Please try again
+  action: Resend the request
+- code: '20602'
+  message: Time-out
+  description: Operation was declined due to time-out. Please try again
+  action: Resend the request
+- code: '20603'
+  message: Operation could not be authorized. Try again later
+  description: Operation cannot be authorized now. Please try again later
+  action: Resend the request
+- code: '20604'
+  message: Notification is not delivered
+  description: Operation was declined. Notification cannot be delivered
+  action: Contact the technical support
+- code: '20701'
+  message: Wrong requests sequence
+  description: Operation was declined due to incorrect sequence of requests
+  action: Correct the request before resending
+- code: '20702'
+  message: Invalid request. Try again
+  description: Operation was declined due to malformed format of the request
+  action: Contact the technical support
+- code: '20703'
+  message: Invoice not found
+  description: Operation was declined. Invoice was not found in the system
+  action: Contact the technical support
+- code: '20705'
+  message: Merchant account is blocked
+  description: Operation was declined due to the merchant’s account being blocked
+  action: Contact the technical support
+- code: '20706'
+  message: Operation not supported by provider
+  description: Operation was declined because the provider does not support this type of operation
+  action: Contact the technical support
+- code: '20801'
+  message: Payment provider approved but did not process the operation
+  description: Payment provider approved but did not process the operation
+  action: Contact the technical support
+- code: '20802'
+  message: The payment provider did not confirm neither successful nor negative status of the payment transaction
+  description: The payment provider cannot confirm status of the payment
+  action: It is necessary to wait
+- code: '20812'
+  message: The service provider did not confirm the account crediting
+  description: The operation was declined because the payment service provider did not confirm that the funds were deposited
+    to the bank account of the customer
+  action: Resend the request
+- code: '20899'
+  message: The payment is processed on the provider side. It can take up to several days. Inform customer if needed
+  description: The payment is processed on the provider or payment system side. It can take up to several days. Inform the
+    customer if needed
+  action: No additional interactions with the platform are required
+- code: '29999'
+  message: Awaiting processing
+  description: Awaiting external processing. Please wait
+  action: It is necessary to wait
+- code: '30000'
+  message: Operation was declined by merchant
+  description: Operation processing was declined by merchant
+  action: No action required
+- code: '30100'
+  message: Operation was declined by merchant for an unknown reason
+  description: Operation processing was declined by merchant for an unknown reason
+  action: No action required
+- code: '30301'
+  message: Merchant did not confirm operation processing
+  description: Operation processing was not confirmed by merchant
+  action: No action required
+- code: '30302'
+  message: Merchant did not respond during the operation confirmation process
+  description: Merchant did not respond during the operation confirmation process
+  action: No action required
+- code: '30303'
+  message: The amount or currency confirmed by the merchant is different from the requested one
+  description: The amount or currency confirmed by the merchant is different from one in the request
+  action: No action required
+- code: '30401'
+  message: Empty draws list
+  description: The list of amounts available for payment is empty
+  action: No action required

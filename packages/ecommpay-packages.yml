@@ -1,0 +1,101 @@
+generated: '2026-06-20'
+method: searched
+source: https://github.com/ITECOMMPAY
+note: >-
+  Official first-party client libraries are published under the ITECOMMPAY GitHub
+  organisation. The core set is the Payment Page SDK family (one per language) that
+  builds and signs the Payment Page open request; there is a parallel Gate/mobile SDK
+  set and a suite of first-party e-commerce platform plugins. These are
+  request-signing / integration libraries (there is no downloadable OpenAPI to
+  generate from). Distribution is primarily via GitHub / language package managers
+  (Composer, npm, PyPI, Maven, Go modules, CocoaPods/SPM, NuGet).
+packages:
+  - language: php
+    registry: github
+    name: itecommpay/paymentpage-sdk-php
+    url: https://github.com/ITECOMMPAY/paymentpage-sdk-php
+    official: true
+    kind: payment-page-sdk
+  - language: javascript
+    registry: github
+    name: paymentpage-sdk-js
+    url: https://github.com/ITECOMMPAY/paymentpage-sdk-js
+    official: true
+    kind: payment-page-sdk
+  - language: python
+    registry: github
+    name: paymentpage-sdk-python
+    url: https://github.com/ITECOMMPAY/paymentpage-sdk-python
+    official: true
+    kind: payment-page-sdk
+  - language: java
+    registry: github
+    name: paymentpage-sdk-java
+    url: https://github.com/ITECOMMPAY/paymentpage-sdk-java
+    official: true
+    kind: payment-page-sdk
+  - language: go
+    registry: github
+    name: paymentpage-sdk-go
+    url: https://github.com/ITECOMMPAY/paymentpage-sdk-go
+    official: true
+    kind: payment-page-sdk
+  - language: swift
+    registry: github
+    name: paymentpage-sdk-ios
+    url: https://github.com/ITECOMMPAY/paymentpage-sdk-ios
+    official: true
+    kind: payment-page-sdk-mobile
+  - language: java
+    registry: github
+    name: paymentpage-sdk-android
+    url: https://github.com/ITECOMMPAY/paymentpage-sdk-android
+    official: true
+    kind: payment-page-sdk-mobile
+  - language: csharp
+    registry: github
+    name: paymentpage-sdk-net
+    url: https://github.com/ITECOMMPAY/paymentpage-sdk-net
+    official: true
+    kind: payment-page-sdk
+  - language: kotlin
+    registry: github
+    name: mobile-sdk-android-ui
+    url: https://github.com/ITECOMMPAY/mobile-sdk-android-ui
+    official: true
+    kind: mobile-sdk-ui
+  - language: objective-c
+    registry: github
+    name: mobile-sdk-ios-ui
+    url: https://github.com/ITECOMMPAY/mobile-sdk-ios-ui
+    official: true
+    kind: mobile-sdk-ui
+  - language: dart
+    registry: github
+    name: msdk-flutter-plugin
+    url: https://github.com/ITECOMMPAY/msdk-flutter-plugin
+    official: true
+    kind: mobile-sdk-ui
+  - language: typescript
+    registry: github
+    name: msdk-react-native
+    url: https://github.com/ITECOMMPAY/msdk-react-native
+    official: true
+    kind: mobile-sdk-ui
+plugins:
+  - platform: WooCommerce
+    name: woocommerce-ecommpay
+    url: https://github.com/ITECOMMPAY/woocommerce-ecommpay
+    official: true
+  - platform: Magento 2
+    name: ecommpay-magento2
+    url: https://github.com/ITECOMMPAY/ecommpay-magento2
+    official: true
+  - platform: PrestaShop
+    name: ecommpay-prestashop
+    url: https://github.com/ITECOMMPAY/ecommpay-prestashop
+    official: true
+  - platform: commercetools
+    name: ecommpay-commercetools-integration
+    url: https://github.com/ITECOMMPAY/ecommpay-commercetools-integration
+    official: true

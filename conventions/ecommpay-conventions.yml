@@ -1,0 +1,50 @@
+generated: '2026-06-20'
+method: searched
+source: https://developers.ecommpay.com/en/en_gate_quickstart.html
+docs:
+  gate_interaction: https://developers.ecommpay.com/en/en_gate_interaction_organisation.html
+  callbacks: https://developers.ecommpay.com/en/en_platform_callbacks.html
+  codes: https://developers.ecommpay.com/en/en_platform_payment_info_codes.html
+note: >-
+  Cross-cutting request/response semantics for the ECOMMPAY Gate and Payment Page
+  APIs, captured from the developer docs (no downloadable OpenAPI exists to derive
+  from). Cross-links: authentication/ecommpay-authentication.yml,
+  errors/ecommpay-decline-codes.yml, asyncapi/ecommpay-callbacks-webhooks.yml.
+authentication:
+  style: per-request HMAC-SHA-512 signature over parameters + numeric project_id
+  detail: authentication/ecommpay-authentication.yml
+interaction_model:
+  synchronous: response returned inline (with signature) for some request types
+  asynchronous: final result delivered via signed callback to the merchant web service
+idempotency:
+  supported: true
+  mechanism: merchant-assigned natural key (payment_id)
+  key_field: payment_id
+  rule: >-
+    The merchant supplies payment_id on every payment request; it can be any value but
+    MUST be unique within the project. Reusing a payment_id that already exists in the
+    project raises an error instead of creating a duplicate payment - i.e. the unique
+    payment_id acts as a client-generated idempotency key that prevents double-charging.
+  scope: per project_id
+  note: >-
+    There is no separate Idempotency-Key header; uniqueness is enforced on the
+    merchant-controlled payment_id. request_id is a separate per-request correlation id
+    returned on callbacks for tracing (not the idempotency key).
+tracing:
+  request_id: returned on callbacks/responses for correlating an operation to its request
+metadata:
+  supported: true
+  note: Merchant reference/additional data can be passed and echoed back on callbacks.
+error_envelope:
+  status_field: operation.status
+  code_field: operation.code
+  message_field: operation.message
+  format: unified numeric code + message (see errors/ecommpay-decline-codes.yml)
+  problem_json: false
+versioning:
+  scheme: uri-path
+  gate: /v2
+  data_api: /v1
+transport:
+  tls: TLS 1.2+
+  protocol: HTTP/1.1+

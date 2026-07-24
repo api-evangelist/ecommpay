@@ -1,0 +1,41 @@
+generated: '2026-06-20'
+method: searched
+source: https://ecommpay.com/
+note: >-
+  Standards / compliance posture for ECOMMPAY. Card-industry and regulatory
+  conformance is publicly documented (PCI DSS Level 1, FCA authorisation, Visa &
+  Mastercard Principal Membership, PSD2/SCA via 3-D Secure). API-protocol conformance
+  is limited: authentication is a proprietary HMAC signature scheme (not OAuth2/OIDC),
+  and no RFC 9457 problem+json is used (errors are a unified numeric code envelope).
+standards:
+  - id: pci-dss
+    conforms: true
+    level: Level 1
+    evidence: Publicly documented PCI DSS Level 1 certification as a direct card acquirer/processor
+  - id: psd2-sca
+    conforms: true
+    evidence: 3-D Secure (challenge + frictionless) supported for Strong Customer Authentication
+  - id: 3d-secure-2
+    conforms: true
+    evidence: EMV 3-D Secure challenge and frictionless flows documented, ACS handling in callbacks
+  - id: emv-card-networks
+    conforms: true
+    evidence: Visa and Mastercard Principal Membership
+  - id: fca-authorisation
+    conforms: true
+    evidence: Authorised by the UK Financial Conduct Authority (FRN 607597)
+  - id: oauth2
+    conforms: false
+    evidence: Signature-based auth (HMAC-SHA-512), no OAuth2 securityScheme
+  - id: openid-connect
+    conforms: false
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors returned as unified numeric operation.code + operation.message, not problem+json
+compliance_program:
+  certifications:
+    - PCI DSS Level 1
+    - FCA authorised (FRN 607597)
+    - Visa Principal Member
+    - Mastercard Principal Member
+  published: https://ecommpay.com/

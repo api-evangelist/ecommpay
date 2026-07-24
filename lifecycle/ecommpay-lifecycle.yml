@@ -1,0 +1,26 @@
+generated: '2026-06-20'
+method: searched
+source: https://developers.ecommpay.com/
+note: >-
+  Lifecycle posture assembled from the developer portal and status page. ECOMMPAY
+  versions its APIs in the URI path (Gate /v2, Data API /v1). It maintains a public
+  status page. Some SDKs/integration guides are explicitly labelled "legacy" (e.g.
+  the legacy iOS/Android SDK docs), indicating a deprecation track, though ECOMMPAY
+  does not publish a formal machine-readable deprecation policy or RFC 8594
+  Sunset/Deprecation header contract that could be verified.
+versioning:
+  scheme: uri-path
+  gate: v2
+  data_api: v1
+  docs: https://developers.ecommpay.com/
+status_page: https://status.ecommpay.com/
+deprecation:
+  policy_url: null
+  sunset_header: false
+  signal: >-
+    "legacy" labelling on superseded SDK/integration docs (e.g. en_sdk_ios.html,
+    en_sdk_android.html) indicates deprecated integration paths; no formal dated
+    deprecation policy is published.
+sla:
+  url: null
+  uptime_target: null

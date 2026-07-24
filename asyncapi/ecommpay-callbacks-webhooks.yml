@@ -1,0 +1,53 @@
+generated: '2026-06-20'
+method: searched
+type: Webhooks
+source: https://developers.ecommpay.com/en/en_platform_callbacks.html
+docs:
+  callbacks: https://developers.ecommpay.com/en/en_platform_callbacks.html
+  codes: https://developers.ecommpay.com/en/en_platform_payment_info_codes.html
+note: >-
+  ECOMMPAY delivers payment results asynchronously as signed HTTP callbacks
+  (webhooks) POSTed to the merchant web service URL. There is no published AsyncAPI
+  document, so this captures the webhook catalog rather than an AsyncAPI spec. The
+  merchant MUST verify the callback signature (HMAC-SHA-512) before trusting it (see
+  authentication/ecommpay-authentication.yml).
+delivery:
+  transport: HTTPS POST to merchant callback URL
+  format: JSON
+  signed: true
+  signature_algorithm: HMAC-SHA-512 (Base64), signature parameter
+  timing: intermediate callbacks during processing + a final callback with the outcome
+envelope:
+  root: operation
+  fields:
+    - operation.id
+    - operation.type
+    - operation.status
+    - operation.date
+    - operation.created_date
+    - operation.request_id
+    - operation.sum_initial (amount, currency)
+    - operation.sum_converted (amount, currency)
+    - operation.code
+    - operation.message
+    - provider (id, payment_id, date, result_code, result_message, auth_code, endpoint_id)
+    - signature
+statuses:
+  - success
+  - processing
+  - awaiting 3ds result
+  - awaiting redirect result
+  - awaiting clarification
+  - awaiting customer action
+  - awaiting merchant auth
+  - decline
+  - error
+operation_types_observed:
+  - sale
+  - refund
+  - payout
+operation_types_note: >-
+  The platform documents additional operation types (e.g. reversals, COF/recurring,
+  account verification); the authoritative enumeration lives in the operation
+  processing docs.
+codes_reference: errors/ecommpay-decline-codes.yml

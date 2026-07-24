@@ -107,6 +107,8 @@ apis:
   - type: Documentation
     url: https://developers.ecommpay.com/en/en_dbl_about.html
 common:
+- type: DomainSecurity
+  url: security/ecommpay-domain-security.yml
 - type: Website
   url: https://ecommpay.com/
 - type: DeveloperPortal
@@ -135,6 +137,34 @@ common:
   url: https://ecommpay.com/privacy-policy/
 - type: LinkedIn
   url: https://www.linkedin.com/company/ecommpay
+- type: Authentication
+  url: authentication/ecommpay-authentication.yml
+- type: Conventions
+  url: conventions/ecommpay-conventions.yml
+- type: Idempotency
+  url: conventions/ecommpay-conventions.yml
+- type: Packages
+  url: packages/ecommpay-packages.yml
+- type: SDKs
+  url: packages/ecommpay-packages.yml
+- type: Sandbox
+  url: sandbox/ecommpay-sandbox.yml
+- type: ErrorCatalog
+  url: errors/ecommpay-decline-codes.yml
+- type: DeclineCodes
+  url: errors/ecommpay-decline-codes.yml
+- type: Webhooks
+  url: asyncapi/ecommpay-callbacks-webhooks.yml
+- type: Conformance
+  url: conformance/ecommpay-conformance.yml
+- type: Compliance
+  url: https://ecommpay.com/
+- type: Lifecycle
+  url: lifecycle/ecommpay-lifecycle.yml
+- type: Components
+  url: components/ecommpay-components.yml
+- type: LLMsTxt
+  url: llms/ecommpay-llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

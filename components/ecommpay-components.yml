@@ -1,0 +1,39 @@
+generated: '2026-06-20'
+method: searched
+source: https://developers.ecommpay.com/en/en_PP_about.html
+note: >-
+  ECOMMPAY ships prebuilt, embeddable payment UI surfaces distinct from the
+  server-side signing SDKs in packages/. The Payment Page is a hosted, highly
+  customisable checkout that can be opened as a redirect or embedded, and the mobile
+  SDKs render a native prebuilt payment UI. These are client-side/embedded components,
+  not API client libraries.
+components:
+  - family: Payment Page
+    kind: hosted-embeddable-checkout
+    description: >-
+      Hosted, customisable payment form supporting cards, wallets, and 100+ alternative
+      payment methods; opened via a signed request. Supports redirect and embedded modes.
+    loaders:
+      - name: paymentpage-sdk-js
+        url: https://github.com/ITECOMMPAY/paymentpage-sdk-js
+    docs: https://developers.ecommpay.com/en/en_PP_about.html
+  - family: Mobile SDK UI (mSDK)
+    kind: native-prebuilt-payment-ui
+    description: >-
+      Prebuilt native payment UI for iOS and Android (plus Flutter and React Native
+      wrappers) that renders the Payment Page flow inside a mobile app.
+    loaders:
+      - name: mobile-sdk-ios-ui
+        url: https://github.com/ITECOMMPAY/mobile-sdk-ios-ui
+      - name: mobile-sdk-android-ui
+        url: https://github.com/ITECOMMPAY/mobile-sdk-android-ui
+      - name: msdk-flutter-plugin
+        url: https://github.com/ITECOMMPAY/msdk-flutter-plugin
+      - name: msdk-react-native
+        url: https://github.com/ITECOMMPAY/msdk-react-native
+  - family: Dashboard
+    kind: hosted-merchant-console
+    description: >-
+      Hosted merchant management interface for controlling, analysing, and managing
+      payments, projects, and reporting.
+    docs: https://developers.ecommpay.com/en/en_dbl_about.html
