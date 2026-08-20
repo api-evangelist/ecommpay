@@ -68,6 +68,11 @@ apis:
   - Payments
   - Payouts
   - Refunds
+  - Server-to-Server
+  tags_raw:
+  - Payments
+  - Payouts
+  - Refunds
   - Server to Server
   properties:
   - type: Documentation
