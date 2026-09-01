@@ -79,7 +79,7 @@ apis:
   - Payments
   - Payouts
   - Refunds
-  - Server to Server
+  - Server-to-Server
   tags_raw:
   - Payments
   - Payouts
