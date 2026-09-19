@@ -130,6 +130,10 @@ apis:
     and managing payments, projects, and reporting across the ECOMMPAY platform.
   humanURL: https://developers.ecommpay.com/en/en_dbl_about.html
   tags:
+  - Dashboards
+  - Management
+  - Reporting
+  tags_raw:
   - Dashboard
   - Management
   - Reporting
