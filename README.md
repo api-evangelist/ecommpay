@@ -1,4 +1,4 @@
-# ECOMMPAY (ecommpay)
+# ECOMMPAY
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,97 +64,105 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-ECOMMPAY is a London-headquartered international payment service provider and direct card acquirer founded in 2012, authorised by the UK Financial Conduct Authority (FRN 607597), PCI DSS Level 1 certified, and holding Visa and Mastercard Principal Membership. It operates its own payment gateway, acquiring, and certified processing platform, serving e-commerce merchants with card processing, alternative and local payment methods, open banking, payouts, multi-currency settlement, and fraud prevention. Its home market is the United Kingdom.
+ECOMMPAY is a London-headquartered international payment service provider and direct card acquirer founded in 2012, authorised by the UK Financial Conduct Authority (FRN 607597), PCI DSS Level 1 certified, and holding Visa and Mastercard Principal Membership. It operates its own payment gateway, acquiring, and certified processing platform, serving e-commerce merchants across Europe, the UK, and global markets with card processing, 100+ alternative and local payment methods, open banking, payouts, multi-currency settlement, and fraud prevention. Its developer surface is API-native but signature-authenticated rather than token-based: merchants integrate through a hosted Payment Page API, a server-to-server Gate API for direct payment processing, a Data API for reporting and reconciliation, and a Dashboard for operational management, all documented on a public developer portal with callbacks/webhooks and multi-language SDKs. Its home market is the United Kingdom.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/ecommpay/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/ecommpay/refs/heads/main/apis.yml)
+**Areas:** Payments · United Kingdom · Payment Gateway · Payment Processing · Acquiring · Card Payments · Alternative Payment Methods · Open Banking · Payouts · Cross-Border · Fraud Prevention
 
-## Tags
+## ECOMMPAY on APIs.io
 
-- Payments
-- United Kingdom
-- Payment Gateway
-- Payment Processing
-- Acquiring
-- Card Payments
-- Alternative Payment Methods
-- Open Banking
-- Payouts
-- Cross-Border
-- Fraud
+Everything profiled for ECOMMPAY is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/ecommpay/](https://apis.io/providers/ecommpay/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (4)
 
-- **Created:** 2026-07-24
-- **Modified:** 2026-07-24
+- [ECOMMPAY Payment Page API](https://apis.io/apis/ecommpay/ecommpay-payment-page-api/) — Hosted, highly customisable payment form for accepting payments across cards, alternative payment methods, and wallets. Merchants open the Payment Page with…
+- [ECOMMPAY Gate API](https://apis.io/apis/ecommpay/ecommpay-gate-api/) — Server-to-server payment API for direct integration, giving merchants full control of the payment flow through their own interface. Supports one-time…
+- [ECOMMPAY Data API](https://apis.io/apis/ecommpay/ecommpay-data-api/) — Reporting and data-retrieval API for programmatic access to payment, operation, and reconciliation data on the ECOMMPAY platform. Requests are accepted over…
+- [ECOMMPAY Dashboard](https://apis.io/apis/ecommpay/ecommpay-dashboard/) — Merchant management interface providing tools for controlling, analysing, and managing payments, projects, and reporting across the ECOMMPAY platform.
 
-## APIs
+### Published properties
 
-ECOMMPAY's developer surface is API-native but signature-authenticated (HMAC over request parameters with a per-project secret key) rather than OAuth token-based. The two API-reference hosts are Stoplight Elements single-page apps that render their OpenAPI content at runtime through a Stoplight platform node API, so no downloadable OpenAPI/Swagger file could be harvested (0 specs saved).
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### ECOMMPAY Payment Page API
+#### AsyncAPI (1)
 
-Hosted, highly customisable payment form for accepting payments across cards, alternative payment methods, and wallets. Opened with an HMAC-signed request; payment results returned via asynchronous callbacks. JavaScript and mobile SDKs available.
+Event-driven and webhook contracts.
 
-- **Human URL:** [https://developers.ecommpay.com/en/en_PP_about.html](https://developers.ecommpay.com/en/en_PP_about.html)
-- **Base URL:** `https://paymentpage.ecommpay.com`
+- [Ecommpay Callbacks Webhooks](https://apis.io/asyncapis/ecommpay/ecommpay-callbacks-webhooks/)
 
-#### Properties
+#### Security (2)
 
-- [Documentation](https://developers.ecommpay.com/en/en_PP_about.html)
-- [API Reference](https://developers.ecommpay.com/en/en_PP_API.html)
+Authentication, trust centre, and vulnerability disclosure.
 
-### ECOMMPAY Gate API
+- [Ecommpay Authentication](https://apis.io/security/ecommpay/ecommpay-authentication/)
+- [Ecommpay Domain Security](https://apis.io/security/ecommpay/ecommpay-domain-security/)
 
-Server-to-server payment API for direct integration with full control of the payment flow — one-time purchases, refunds, payouts, and credential-on-file transactions. Authenticated with a project ID and an HMAC signature; results via asynchronous callbacks.
+## Where to find this API
 
-- **Human URL:** [https://developers.ecommpay.com/en/en_Gate_Integration_About.html](https://developers.ecommpay.com/en/en_Gate_Integration_About.html)
-- **Base URL:** `https://api.ecommpay.com/v2`
-
-#### Properties
-
-- [Documentation](https://developers.ecommpay.com/en/en_Gate_Integration_About.html)
-- [API Reference](https://api-developers.ecommpay.com/api.html)
-
-### ECOMMPAY Data API
-
-Reporting and data-retrieval API for programmatic access to payment, operation, and reconciliation data over TLS 1.2+, signature-authenticated.
-
-- **Human URL:** [https://developers.ecommpay.com/en/en_dbl_api_overview.html](https://developers.ecommpay.com/en/en_dbl_api_overview.html)
-- **Base URL:** `https://data.ecommpay.com/v1`
-
-#### Properties
-
-- [Documentation](https://developers.ecommpay.com/en/en_dbl_api_overview.html)
-- [API Reference](https://api-data.ecommpay.com/api.html)
-
-### ECOMMPAY Dashboard
-
-Merchant management interface for controlling, analysing, and managing payments, projects, and reporting.
-
-- **Human URL:** [https://developers.ecommpay.com/en/en_dbl_about.html](https://developers.ecommpay.com/en/en_dbl_about.html)
-
-#### Properties
-
-- [Documentation](https://developers.ecommpay.com/en/en_dbl_about.html)
-
-## Common Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://ecommpay.com/)
-- [Developer Portal](https://developers.ecommpay.com/)
 - [Documentation](https://developers.ecommpay.com/landing-en/)
-- [API Reference](https://api-developers.ecommpay.com/api.html)
-- [Getting Started](https://developers.ecommpay.com/en/en_getting_started.html)
-- [GitHub Organization](https://github.com/ITECOMMPAY)
-- [Status Page](https://status.ecommpay.com/)
+- [Getting started](https://developers.ecommpay.com/en/en_getting_started.html)
+- [API reference](https://api-developers.ecommpay.com/api.html)
 - [Pricing](https://ecommpay.com/pricing/)
-- [Blog](https://ecommpay.com/blog/)
+- [Sign up](https://dashboard.ecommpay.com/)
 - [Support](https://ecommpay.com/support/)
-- [Sign Up](https://dashboard.ecommpay.com/)
-- [Terms of Service](https://ecommpay.com/terms-of-use/)
-- [Privacy Policy](https://ecommpay.com/privacy-policy/)
-- [LinkedIn](https://www.linkedin.com/company/ecommpay)
+- [Blog](https://ecommpay.com/blog/)
+- [Compliance](https://ecommpay.com/)
+- [Terms of service](https://ecommpay.com/terms-of-use/)
+- [Privacy policy](https://ecommpay.com/privacy-policy/)
+- [GitHub](https://github.com/ITECOMMPAY)
+- [Status](https://status.ecommpay.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 33.0** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 69.6 |
+| Contract quality | 39.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 52.4 |
+| Access clarity | 0.0 |
+
+**Agent readiness 25.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | documented (partial credit) |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | yes |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 27.7** — Payments
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/ecommpay/](https://apis.io/providers/ecommpay/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for ECOMMPAY: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/ecommpay/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
